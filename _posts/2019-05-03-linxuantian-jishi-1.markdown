@@ -10,8 +10,8 @@ catalog:    true
 tags:
     - 林轩田:机器学习基石
 ---
-# When Can Machines Learn?#
-## Lecture 1: The Learning Problem##
+# When Can Machines Learn?
+## Lecture 1: The Learning Problem
 ---  
 ### What is machine learning?  
 ![](/img/linxuant-jishi/1.jpg)  
