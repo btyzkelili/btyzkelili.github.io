@@ -12,21 +12,22 @@ tags:
 ---
 # When Can Machines Learn?#
 ## Lecture 1: The Learning Problem##
+---  
 ### What is machine learning?  
-![](/img/linxuantian-jishi/1.jpg)  
+![](/img/linxuant-jishi/1.jpg)  
 机器学习处理数据提高某方面的表现  
 
 ### When to use machine learning?  
-![](/img/linxuantian-jishi/2.jpg)  
+![](/img/linxuant-jishi/2.jpg)  
  1. 存在某些可以学习（可以预测）的潜藏模式，某种表现可以增进  
  2. 不知道如何定义 eg.无法定义什么是树 
  3. 模式有data   
 eg.   
-![](/img/linxuantian-jishi/3.jpg)  
-![](/img/linxuantian-jishi/4.jpg)  
+![](/img/linxuant-jishi/3.jpg)  
+![](/img/linxuant-jishi/4.jpg)  
 
 ### Components of Learning  
-![](/img/linxuantian-jishi/6.jpg)  
+![](/img/linxuant-jishi/6.jpg)  
 1. 输入input：x  
 2. 输出output: y  
 3. 目标函数f：未知(需要学习的模式，知道就不用使用机器学习)  
@@ -34,22 +35,22 @@ eg.
 5. 假说函数g:尽可能与f相似  
 
 ### The Learning Model  
-![](/img/linxuantian-jishi/5.jpg)  
+![](/img/linxuant-jishi/5.jpg)  
 * 机器学习演算法A:有两个输入：数据和H(hypothsis set),任务是从很多可能的公式h组成的H(hypothesis set)中选一个它认为最接近f的g  
 * 机器学习模型：A and H
 * 机器学习进一步定义：使用数据计算尽可能接近f的g  
 eg.   
-![](/img/linxuantian-jishi/7.jpg)  
+![](/img/linxuant-jishi/7.jpg)  
 ![](/img/linxuantian-jishi/8.jpg)  
 
 ### Machine Learning and Data Mining  
-![](/img/linxuantian-jishi/11.jpg)  
+![](/img/linxuant-jishi/11.jpg)  
 机器学习和数据挖掘在实际中很难区分，但是并不是一样的  
   
 ### Machine Learning and Artificial Intelligence  
-![](/img/linxuantian-jishi/10.jpg)  
+![](/img/linxuant-jishi/10.jpg)  
 机器学习是实现人工智能的一个方法  
   
 ### Machine Learning and Statistics  
-![](/img/linxuantian-jishi/9.jpg)  
+![](/img/linxuant-jishi/9.jpg)  
 统计方法有很多机器学习可以借鉴的方法  
