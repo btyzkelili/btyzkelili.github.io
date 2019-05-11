@@ -21,22 +21,22 @@ tags:
 ![](/img/linxuant-jishi/2.jpg)  
  1. 存在某些可以学习（可以预测）的潜藏模式，某种表现可以增进  
  2. 不知道如何定义 eg.无法定义什么是树 
- 3. 模式有data   
+ 3. 模式有data     
 * Example:   
 ![](/img/linxuant-jishi/3.jpg)  
 ![](/img/linxuant-jishi/4.jpg)  
 
 ### 3. Components of Learning  
 ![](/img/linxuant-jishi/6.jpg)  
-1. 输入input：x  
-2. 输出output: y  
+1. 输入input：**x**=(x<sub>1</sub>,x<sub>2</sub>,...,x<sub>b</sub>),每个x代表一个特征的值，一个特征可以用多维向量表示  
+2. 输出output: y(label)  
 3. 目标函数f：未知(需要学习的模式，知道就不用使用机器学习)  
-4. 数据(x,y)  
+4. 数据(**x**,y)  
 5. 假说函数g:尽可能与f相似  
 
 ### 4. The Learning Model  
 ![](/img/linxuant-jishi/5.jpg)  
-* 机器学习演算法A:有两个输入：数据和H(hypothsis set),任务是从很多可能的公式h组成的H(hypothesis set)中选一个它认为最接近f的g  
+* 机器学习演算法A:有两个输入：数据和H(hypothsis set),任务是从很多可能的公式h(**x**)组成的H(hypothesis set)中选一个它认为最接近f的g  
 * 机器学习模型：A and H
 * 机器学习进一步定义：使用数据计算尽可能接近f的g  
 * Example:   
