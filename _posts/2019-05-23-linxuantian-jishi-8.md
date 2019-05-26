@@ -11,6 +11,7 @@ tags:
     - 林轩田:机器学习基石
 ---
 # 二. Why Can Machines Learn?
+## Lecture 8: Noise
 ## 1.Noise
 * **x**,y都有可能有noise  
 ![](/img/linxuant-jishi/8-1.jpg) 
