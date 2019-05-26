@@ -27,7 +27,7 @@ tags:
 ![](/img/linxuant-jishi/5-4.jpg)  
 * 在二维平面所有点上的划分h(直线)个数有无数个，从所有点中选出N个dichotomies(二分):H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)，在这N个点上的h最多有2<sup>N</sup>个(因为每个点不是o就是x两种情况)
 ![](/img/linxuant-jishi/5-5.jpg)  
-* 将H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)的最大值看做m<sub>H</sub>(N):成长函数
+* 将dichotomies:H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)的最大值看做m<sub>H</sub>(N):成长函数
 ### 4. M Replaced by Growth Function
 #### 4.1 What if m<sub>H</sub>(N) replaces M?
 ![](/img/linxuant-jishi/5-6.jpg)  
