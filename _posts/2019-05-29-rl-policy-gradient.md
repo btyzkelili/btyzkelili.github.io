@@ -19,7 +19,6 @@ tags:
 ## 实例
 ### RL_brain.py
 ```
-"""
 This part of code is the reinforcement learning brain, which is a brain of the agent.
 All decisions are made in here.
 Policy Gradient, Reinforcement Learning.
@@ -27,12 +26,11 @@ View more on my tutorial page: https://morvanzhou.github.io/tutorials/
 Using:
 Tensorflow: 1.0
 gym: 0.8.0
-"""
 
 import numpy as np
 import tensorflow as tf
 
-# reproducible
+#reproducible
 np.random.seed(1)
 tf.set_random_seed(1)
 
@@ -143,14 +141,12 @@ class PolicyGradient:
 ``` 
 ###run_CartPole.py  
 ```
-"""
 Policy Gradient, Reinforcement Learning.
 The cart pole example
 View more on my tutorial page: https://morvanzhou.github.io/tutorials/
 Using:
 Tensorflow: 1.0
 gym: 0.8.0
-"""
 
 import gym
 from RL_brain import PolicyGradient
@@ -213,24 +209,22 @@ for i_episode in range(3000):
 ```
 ### run_MountainCar.py  
 ```
-"""
 Policy Gradient, Reinforcement Learning.
 The cart pole example
 View more on my tutorial page: https://morvanzhou.github.io/tutorials/
 Using:
 Tensorflow: 1.0
 gym: 0.8.0
-"""
 
 import gym
 from RL_brain import PolicyGradient
 import matplotlib.pyplot as plt
 
 DISPLAY_REWARD_THRESHOLD = -2000  # renders environment if total episode reward is greater then this threshold
-# episode: 154   reward: -10667
-# episode: 387   reward: -2009
-# episode: 489   reward: -1006
-# episode: 628   reward: -502
+#episode: 154   reward: -10667
+#episode: 387   reward: -2009
+#episode: 489   reward: -1006
+#episode: 628   reward: -502
 
 RENDER = False  # rendering wastes time
 
