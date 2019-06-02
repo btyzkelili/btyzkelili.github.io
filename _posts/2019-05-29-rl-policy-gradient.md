@@ -17,8 +17,9 @@ tags:
 * Policy Gradient的核心思想是更新参数时有两个考虑：如果这个回合选择某一动作，下一回合选择该动作的概率大一些，然后再看奖惩值，如果奖惩是正的，那么会放大这个动作的概率，如果奖惩是负的，就会减小该动作的概率。
 * Policy Gradient可以选择**连续动作**，而基于值的q-learning和DQN等则不行，DQN为什么不行？因为即使DQN可以表示很多状态，但是它输出的是value，并且需要找到value的最大值，连续情况下无法穷举每一个动作，也就无法计算最大Q值对应的动作。
 ## 实例
-### RL_brain.py
 
+### RL_brain.py
+	
 	This part of code is the reinforcement learning brain, which is a brain of the agent.
 	All decisions are made in here.
 	Policy Gradient, Reinforcement Learning.
@@ -139,7 +140,7 @@ tags:
 	        discounted_ep_rs /= np.std(discounted_ep_rs)
 	        return discounted_ep_rs
 
-###run_CartPole.py  
+### run_CartPole.py  
 
 	Policy Gradient, Reinforcement Learning.
 	The cart pole example
@@ -207,7 +208,7 @@ tags:
 	
 	        observation = observation_
 	```
-	### run_MountainCar.py  
+### run_MountainCar.py  
 	```
 	Policy Gradient, Reinforcement Learning.
 	The cart pole example
