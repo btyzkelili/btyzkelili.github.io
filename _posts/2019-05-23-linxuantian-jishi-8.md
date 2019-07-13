@@ -31,9 +31,9 @@ tags:
 * 0/1 error：分类问题  
 * squared error：实数问题  
 ![](/img/linxuant-jishi/8-7.jpg)   
-* P(y|**x**)和err的衡量影响mini-target：相同P(y|**x**)时，用不同的错误衡量方法会得到不同的mini-target的结果    
-* 使用0/1 error方法时，最好的mini-target=P(y|**x**)最大的  
-* 使用squared error方法时，最好的mini-target是P(y|**x**)的加权平均           
+* P(y/**x**)和err的衡量影响mini-target：相同P(y/**x**)时，用不同的错误衡量方法会得到不同的mini-target的结果    
+* 使用0/1 error方法时，最好的mini-target=P(y/**x**)最大的  
+* 使用squared error方法时，最好的mini-target是P(y/**x**)的加权平均           
 ![](/img/linxuant-jishi/8-8.jpg)  
 * 错误衡量法法告诉A它选的g好不好                                                                                                        
 ## 3.Choice of Error Measure
