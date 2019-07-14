@@ -73,12 +73,15 @@ tags:
 ### 2.2 Perceptron Learning Algorithm(PLA)
 ![](/img/linxuant-jishi/2-11.jpg)    
 * **Perceptron Learning Algorithm(PLA)**  
+
 ![](/img/linxuant-jishi/2-4.jpg)   
-* 从**w**全为0的线开始，以某种顺序（正序、乱序等）找划分错误的点，根据该点修正**W**（图右侧向量转角方法:夹角为锐角向量乘积为正，直角为0，钝角为负），直到直线满足所有点。
-![](/img/linxuant-jishi/2-5.jpg)   
+* 从**w**全为0的线开始，以某种顺序（正序、乱序等）找划分错误的点，根据该点修正**W**（图右侧向量转角方法:夹角为锐角向量乘积为正，直角为0，钝角为负），直到直线满足所有点。  
+
+![](/img/linxuant-jishi/2-5.jpg)     
 * **w**所示直线是划分直线h=**w<sup>t</sup>x**的法线,规定了原点之后，原点指向其他点的线即为该点的向量，因为向量之间锐角乘积为正，钝角为负，所以垂直于**w**向量的线是正负分界线，即每当确定一个**w**后，会产生一个分界线h，很多h(**x**)构成H，最终从H中选出最好的h去接近f  
+
 * Example
-[](/img/linxuant-jishi/2-6.jpg)  
+![](/img/linxuant-jishi/2-6.jpg)  
 	* 不选B原因：y<sub>n</sub>=0(?)  
 
 ### 2.3 Guarantee of PLA
@@ -98,14 +101,22 @@ tags:
 ## Lecture 3: Types of Learning
 ---  
 ### 3.1 Learning with Different Output Space y(输出空间)
-
+#### 3.1.1 Binary Classification
+#### 3.1.2 Multiclass Classification
+#### 3.1.3 Regression(回归)
 ![](/img/linxuant-jishi/3-2.jpg)  
 * 输出是实数(输出空间无限大)
-
+3.1.4 Structured Learning
 ![](/img/linxuant-jishi/3-1.jpg)  
 * 像很大的类别分析，输出空间有某种结构关系
+
 ### 3.2 Learning with Different Data Label y<sub>n<sub>
+#### 3.2.1 Suervised
+#### 3.2.2 Unsupervised/分群
+#### 3.2.3 Semi-supervised
+#### 3.2.4 Reinforcement Learning
 * 没有最后想要结果的标记，但有一些辅助标记，可以知道动作好坏，用奖励或乘法方式告诉输出好不好。
+
 ### 3.3 Learning with Different Protocol f->(**x**<sub>n</sub>,y<sub>n</sub>)（与机器沟通方式）
 #### 3.3.1 Batch Learning
 * 一次喂给全部数据，得到一个g
@@ -115,6 +126,7 @@ tags:
 * RL常用online protocol
 #### 3.3.3 Active Learning
 * 机器有问问题的能力，希望能通过有技巧问问题来用更少的标记学习，常用在取得标记很贵的场合。
+
 ### 3.4 Learning with Different Input Space **x**
 #### 3.4.1 Concrete(具体) Features
 #### 3.4.2 Raw Features
@@ -135,8 +147,8 @@ tags:
 #### 4.1.1 Prove Learning is possible 
 ![](/img/linxuant-jishi/4-1.jpg)  
 ![](/img/linxuant-jishi/4-2.jpg)  
-* 把一个机器学习问题的所有数据看做瓶子中的弹珠，对于一个确定的h,将h(**x**)=f(**x**)的弹珠看做黄色的，h(**x**)!=f(**x**)看做蓝色的，从瓶子中抽出部分弹珠（训练数据），在选出的珠子和瓶子中的珠子分布相同的前提下，瓶子里面是黄色弹珠的概率可以在很大概率上看作是整个瓶子的黄色珠子概率（PAC）（但有较小可能选出的珠子情况与瓶子内的珠子情况有很大不同），通过此方法以验证一个h的好坏。
-![](/img/linxuant-jishi/4-3.jpg)  
+* 把一个机器学习问题的所有数据看做瓶子中的弹珠，对于一个确定的h,将h(**x**)=f(**x**)的弹珠看做黄色的，h(**x**)!=f(**x**)看做蓝色的，从瓶子中抽出部分弹珠（训练数据），在选出的珠子和瓶子中的珠子分布相同的前提下，瓶子里面是黄色弹珠的概率可以在很大概率上看作是整个瓶子的黄色珠子概率（PAC）（但有较小可能选出的珠子情况与瓶子内的珠子情况有很大不同），通过此方法以验证一个h的好坏。  
+![](/img/linxuant-jishi/4-3.jpg)    
 * E<sub>in</sub>(h):在抽出的珠子中h(**x**)!=f(**x**)的概率
 * E<sub>out</sub>(h)：在所有珠子中h(**x**)!=f(**x**) 
 * 根据上面的分析，可以得到：对确定的f，当E<sub>in</sub>小的时候大概率上E<sub>out</sub>也小，即h很接近f
@@ -146,7 +158,7 @@ tags:
 ![](/img/linxuant-jishi/4-6.jpg)  
 * 对于一个h，每次抓出一些珠子看做D<sub>n</sub>，BAD表示E<sub>in</sub>和E<sub>out</sub>相差很远，Hoeffding说明在格子中是BAD的比较少，即少数不能代表多数的可能性比较小。
 ![](/img/linxuant-jishi/4-7.jpg)  
-* 对于很多h，只有所有h都可以用少数正确验证多数的D才不会出现上面分析的误选了E<sub>in</sub>小但是实际上E<sub>out</sub>大的情况，这时的D才是好D
+* 对于很多h，只有所有h都可以用少数正确验证多数的D才不会出现上面分析的误选了E<sub>in</sub>小但是实际上E<sub>out</sub>大的情况，这时的D才是好D  
 ![](/img/linxuant-jishi/4-8.jpg)  
 * 只要有一个h上是BAD,整体上就是BAD,计算整体上是BAD的概率如上，其中M=h的数量，exp(..)趋于0，所以当M有限的时候，整体BAD的概率趋于0，即所有h的E<sub>in</sub>都接近于E<sub>out</sub>,此时A可以选E<sub>in</sub>最小的h，而这个h不会是上面提到的恶化坏概率的情况。
 #### 4.1.2 summary
@@ -162,16 +174,19 @@ tags:
 	1. sure E<sub>in</sub> close to E<sub>out</sub>?  
 	2. E<sub>in</sub> small enough?  
 * 当M小的时候，坏事发生的概率小，满足条件1，但是可选的h少，不一定能找出足够小的E<sub>in</sub>，不满足条件2；当M大的时候，坏事发生的概率大，不满足条件1，但是可选的h多，可找出足够小的E<sub>in</sub>，满足条件2，由此得知M的重要性
-* Example
-![](/img/linxuant-jishi/5-2.jpg)  
+* Example  
+![](/img/linxuant-jishi/5-2.jpg) 
+ 
 ### 5.2 M
 ![](/img/linxuant-jishi/5-3.jpg)  
 * M:不同h的个数
+
 ### 5.3 Growth Function
 ![](/img/linxuant-jishi/5-4.jpg)  
-* 在二维平面所有点上的划分h(直线)个数有无数个，从所有点中选出N个dichotomies(二分):H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)，在这N个点上的h最多有2<sup>N</sup>个(因为每个点不是o就是x两种情况)
+* 在二维平面所有点上的划分h(直线)个数有无数个，从所有点中选出N个dichotomies(二分):H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)，在这N个点上的h最多有2<sup>N</sup>个(因为每个点不是o就是x两种情况)  
 ![](/img/linxuant-jishi/5-5.jpg)  
 * 将dichotomies:H(**x**<sub>1</sub>,**x**<sub>2</sub>,...,**x**<sub>N</sub>)的最大值看做m<sub>H</sub>(N):成长函数
+
 ### 5.4 M Replaced by Growth Function
 #### 5.4.1 What if m<sub>H</sub>(N) replaces M?
 ![](/img/linxuant-jishi/5-6.jpg)  
@@ -208,23 +223,23 @@ tags:
 * 当k确定时，B(N,k)被上限多形式poly(N)限制，所以：如果break point存在，成长函数是多项式级。   
 
 ### 6.3 Vapnik-Chervonenkis(VC)bound
-![](/img/linxuant-jishi/6-7.jpg)  
+![](/img/linxuant-jishi/6-7.png)  
 * 前一章提到的M可以被成长函数替代，并且经过三步证明（略）后可以得到VC bound，证明了E<sub>in</sub>和E<sub>out</sub>相差很大的概率，在成长函数有break point、N足够大时时，趋于0.  
 * 到此，证明了H中有无限h时，若成长函数存在break point，那么learning也是成立的  
-![](/img/linxuant-jishi/6-7.jpg)  
+![](/img/linxuant-jishi/6-7.png)  
 * 当有一个好的H:存在break point,有好的数据D:数据足够多（N够大），并且有好的A:选出够小的E<sub>in</sub>，就probably learned.
 
 ## Summary : Why Can Machines Learn?
 ---
 由于no-free-lunch理论，我们是没有办法证明g在为学习的资料上与f到底有多接近的，所以如果我们要证明学习是可能的，必须在一个假设下：Hoeffding's Intequality
 
-![](/img/linxuant-jishi/z-1.jpg)    
+![](/img/linxuant-jishi/z-1.png)    
 
 在N较大时，部分抽样的分布可以大概率上表示整体分布。
 
 在这个前提下，我们知到，对于一个h大概率上E<sub>in</sub>接近E<sub>out</sub>，但是我们在集和H中挑选h，这么多h，难免会有某个h运气不好中了小概率事件E<sub>in</sub>和E<sub>out</sub>差距很大，如果我们的学习算法不行选中了这个h，就使得学习失败，那么在H中出现这样bad的h(可能一个可能多个，只要有这样的h就不行)的可能性有多大呢?
 
-![](/img/linxuant-jishi/z-2.jpg)    
+![](/img/linxuant-jishi/z-2.png)    
 
 其中M是H中h的个数，由于exp项趋于0，所以当M有限时，整体概率趋于零，也就是说，在M有限时，发生上述情况的概率趋于零，即学习是可能的。
 
@@ -232,52 +247,51 @@ tags:
 
 虽然我们说M是无穷大，但不是所有的h都满足H的条件，例如：
 
-![](/img/linxuant-jishi/z-3.jpg)    
+![](/img/linxuant-jishi/z-3.png)    
 
 H是二维平面上所有的直线(也就是说这个问题就是线性可分问题，所以所有候选的h构成的H是直线)，图中画叉的两幅图，他们就不满足该条件，而对于N个点，他们所能构成的最多的满足条件的组合数(真实情况下可能产生的数据，因为该问题就是线性可分问题，所以真实情况下就不能产生图中划掉的那样的数据) = 有效的直线数量 = h的数量：
 
-![](/img/linxuant-jishi/z-4.jpg)    
+![](/img/linxuant-jishi/z-4.png)    
 
-![](/img/linxuant-jishi/z-5.jpg)  
+![](/img/linxuant-jishi/z-5.png)  
 
 我们希望M可以被有效的N所替代，所以引入了成长函数：
 
-![](/img/linxuant-jishi/z-6.jpg)  
+![](/img/linxuant-jishi/z-6.png)  
 
 它表示N个点最多可能的组合。
 
 不同情况(问题)下成长函数不同，有的可以直接得到，有的则不行：
 
-![](/img/linxuant-jishi/z-7.jpg)  
+![](/img/linxuant-jishi/z-7.png)  
 
 如果没有不符合条件的组合，那么成长函数m<sub>H</sub>(n)=2<sup>n</sup>，如果我们想让上面的概率趋于零，就希望可以找到成长函数的上界，从而引入了break point:
 
-![](/img/linxuant-jishi/z-8.jpg)  
+![](/img/linxuant-jishi/z-8.png)  
 
 它是指第一个m<sub>H</sub>(k)=2<sup>k</sup>的点k
 
 有了break point之后，我们定义bounding function B(N,k):
 
-![](/img/linxuant-jishi/z-9.jpg)  
+![](/img/linxuant-jishi/z-9.png)  
 
 指在break point = k时，成长函数m<sub>H</sub>(n)的最大可能的值，也就是我们要找的成长函数的上界，可以证明：
 
-![](/img/linxuant-jishi/z-10.jpg)  
+![](/img/linxuant-jishi/z-10.png)  
 
 也就是说，B(N,k)是有上界的，并且这个上界是多项式级的，所以当存在break point时，成长函数的上界B(N,k)有上界，即当有break point时，成长函数有多项式上界(多项式上界乘以趋于0的值最终还会趋于零)。
 
 我们得到了成长函数有上界的结论，那么我们能不能把这个成长函数直接放到上面我们算的概率式子中，就想下图所示那样？
 
-![](/img/linxuant-jishi/z-11.jpg)  
+![](/img/linxuant-jishi/z-11.png)  
 
 其实是不能直接得到这个式子的，但是我们经过数学推导可以得到下面的式子：
 
-![](/img/linxuant-jishi/z-12.jpg)  
+![](/img/linxuant-jishi/z-12.png)  
 
 在N很大的前提下，可以得到上式，称为VC bound
 
 所以我们可以得到结论：H中有无限h时，若成长函数存在break point，那么learning也是成立的
-
 
 
 
