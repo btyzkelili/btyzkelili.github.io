@@ -2,7 +2,7 @@
 layout:     post
 title:      "林轩田-机器学习基石-Lecture1"
 subtitle:   ""
-date:       2019-05-04 12:00:00
+date:       2019-07-08 12:00:00
 author:     "btyzkelili"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
