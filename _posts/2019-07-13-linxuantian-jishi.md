@@ -195,9 +195,7 @@ tags:
 * 当m<sub>H</sub>(N)是polynomial（多项式）时，不等式右边在N足够大时趋于0，当m<sub>H</sub>(N)是exponential（指数函数）时，不等式右边不趋于0
 #### 5.4.2 Break Point of H
 ![](/img/linxuant-jishi/5-8.jpg)    
-* break point:第一个m<sub>H</sub>(k)<2<sup>k</sup>的点k
-几种情况下的break point:
-![](/img/linxuant-jishi/5-9.jpg)    
+* break point:第一个m<sub>H</sub>(k)<2<sup>k</sup>的点k    
 * 如果没有break point:m<sub>H</sub>(N)=2<sup>N</sup>
 * 如果有break point k:m<sub>H</sub>(N)=O(N<sup>k-1</sup>)(下一节证明)
 
