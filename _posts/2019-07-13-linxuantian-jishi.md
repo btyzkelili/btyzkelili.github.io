@@ -80,7 +80,7 @@ tags:
 ![](/img/linxuant-jishi/2-5.jpg)     
 * **w**所示直线是划分直线h=**w<sup>t</sup>x**的法线,规定了原点之后，原点指向其他点的线即为该点的向量，因为向量之间锐角乘积为正，钝角为负，所以垂直于**w**向量的线是正负分界线，即每当确定一个**w**后，会产生一个分界线h，很多h(**x**)构成H，最终从H中选出最好的h去接近f  
 
-* Example
+* Example  
 ![](/img/linxuant-jishi/2-6.jpg)  
 	* 不选B原因：y<sub>n</sub>=0(?)  
 
@@ -106,7 +106,7 @@ tags:
 #### 3.1.3 Regression(回归)
 ![](/img/linxuant-jishi/3-2.jpg)  
 * 输出是实数(输出空间无限大)
-3.1.4 Structured Learning
+#### 3.1.4 Structured Learning
 ![](/img/linxuant-jishi/3-1.jpg)  
 * 像很大的类别分析，输出空间有某种结构关系
 
@@ -197,7 +197,7 @@ tags:
 ![](/img/linxuant-jishi/5-8.jpg)    
 * break point:第一个m<sub>H</sub>(k)<2<sup>k</sup>的点k
 几种情况下的break point:
-![](/img/linxuant-jishi/5-8.jpg)    
+![](/img/linxuant-jishi/5-9.jpg)    
 * 如果没有break point:m<sub>H</sub>(N)=2<sup>N</sup>
 * 如果有break point k:m<sub>H</sub>(N)=O(N<sup>k-1</sup>)(下一节证明)
 
@@ -223,10 +223,10 @@ tags:
 * 当k确定时，B(N,k)被上限多形式poly(N)限制，所以：如果break point存在，成长函数是多项式级。   
 
 ### 6.3 Vapnik-Chervonenkis(VC)bound
-![](/img/linxuant-jishi/6-7.png)  
+![](/img/linxuant-jishi/6-7.jpg)  
 * 前一章提到的M可以被成长函数替代，并且经过三步证明（略）后可以得到VC bound，证明了E<sub>in</sub>和E<sub>out</sub>相差很大的概率，在成长函数有break point、N足够大时时，趋于0.  
 * 到此，证明了H中有无限h时，若成长函数存在break point，那么learning也是成立的  
-![](/img/linxuant-jishi/6-7.png)  
+![](/img/linxuant-jishi/6-8.jpg)  
 * 当有一个好的H:存在break point,有好的数据D:数据足够多（N够大），并且有好的A:选出够小的E<sub>in</sub>，就probably learned.
 
 ## Summary : Why Can Machines Learn?
@@ -292,13 +292,3 @@ H是二维平面上所有的直线(也就是说这个问题就是线性可分问
 在N很大的前提下，可以得到上式，称为VC bound
 
 所以我们可以得到结论：H中有无限h时，若成长函数存在break point，那么learning也是成立的
-
-
-
-
-
-
-
-
-
-
