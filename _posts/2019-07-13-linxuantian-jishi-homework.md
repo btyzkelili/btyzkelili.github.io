@@ -14,7 +14,7 @@ tags:
 ---
 ### 1-1
 
-![](/img/linxuant-jishi/t-1-1.png)    
+![](/img/linxuant-jishi/t-1-1.PNG)    
 
 * 题意：下列哪些问题最适合用机器学习解决
 
@@ -38,7 +38,7 @@ tags:
 
 ### 1-5
 
-![](/img/linxuant-jishi/t-1-5.png)   
+![](/img/linxuant-jishi/t-1-5.PNG)   
 
 * 题意：有选择的在小白鼠上安排实验，快速知道癌症药的潜在作用
 
@@ -51,15 +51,15 @@ tags:
 * 答案：active learning
 
 ### 1-8
-![](/img/linxuant-jishi/t-1-8.png)   
+![](/img/linxuant-jishi/t-1-8.PNG)   
 
 * 分析：没有免费午餐定理(学习算法不能脱离实际问题)
 
 * 答案：最后一项
 
 ### 1-12
-![](/img/linxuant-jishi/t-1-12-1.png)   
-![](/img/linxuant-jishi/t-1-12-2.png)   
+![](/img/linxuant-jishi/t-1-12-1.PNG)   
+![](/img/linxuant-jishi/t-1-12-2.PNG)   
 
 * 题意：利用Hoeffding Inequality计算 当u=0.9时v小于等于0.1的概率
 
