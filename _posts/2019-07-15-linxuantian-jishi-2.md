@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      "林轩田-机器学习基石-笔记1"
+subtitle:   ""
+date:       2019-07-13 12:00:00
+author:     "btyzkelili"
+header-img: "img/post-bg-nextgen-web-pwa.jpg"
+header-mask: 0.3
+catalog:    true
+tags:
+    - 林轩田:机器学习基石
+---
 # 二. Why Can Machines Learn?
 ---
 ## Lecture 5: Training versus Testing
