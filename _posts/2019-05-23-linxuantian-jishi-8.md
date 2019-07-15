@@ -15,9 +15,9 @@ tags:
 ## 1.Noise
 * **x**,y都有可能有noise  
 ![](/img/linxuant-jishi/8-1.jpg) 
-* Noise可以看做会变色的弹珠，有P概率为黄色，1-P概率为绿，但是整个罐子黄色弹珠符合某种分布，仍可用抽样方式还预测罐子中有多少黄色，即**x**来自P(**x**)，同时y来自P(y|**x**)，训练的时候是如此，测试的时候还是如此，所以将VC重写后VC仍然适用。  
+* Noise可以看做会变色的弹珠，有P概率为黄色，1-P概率为绿，但是整个罐子黄色弹珠符合某种分布，仍可用抽样方式还预测罐子中有多少黄色，即**x**来自P(**x**)，同时y来自P(y&#124;**x**)，训练的时候是如此，测试的时候还是如此，所以将VC重写后VC仍然适用。  
 ![](/img/linxuant-jishi/8-2.jpg) 
-* Target Distribution(P(y|**x**):告诉我们最好的预测(mini-target)是什么，有多少Noise  
+* Target Distribution(P(y&#124;**x**):告诉我们最好的预测(mini-target)是什么，有多少Noise  
 * 对于之前讨论的determinstic target f 是Target Distribution的特殊情况：P(y|**x**)=1 for y=f(**x**)  
 * P(**x**)告诉我们常见、重要的点是哪些，因为P(**x**)大代表经常在E<sub>in</sub>中被sample到，同时在算E<sub>out</sub>的时候也会比较重要，所以这些点我们要尽量预测接近mini-target,这个mini-target是由Target Distribution得来的，它告诉我们最理想的mini-target是什么，所以机器学习要做到的是：在常见的点上要做的好。  
 ![](/img/linxuant-jishi/8-3.jpg)   
