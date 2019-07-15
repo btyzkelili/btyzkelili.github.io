@@ -10,9 +10,9 @@ catalog:    true
 tags:
     - 林轩田:机器学习基石
 ---
-# 作业一
+## 作业一
 ---
-### 1-1
+#### 1-1
 
 ![](/img/linxuant-jishi/t-1-1.PNG)    
 
@@ -36,7 +36,7 @@ tags:
 
 * 答案：ii，iv,v
 
-### 1-5
+#### 1-5
 
 ![](/img/linxuant-jishi/t-1-5.PNG)   
 
@@ -50,14 +50,14 @@ tags:
 
 * 答案：active learning
 
-### 1-8
+#### 1-8
 ![](/img/linxuant-jishi/t-1-8.PNG)   
 
 * 分析：没有免费午餐定理(学习算法不能脱离实际问题)
 
 * 答案：最后一项
 
-### 1-12
+#### 1-12
 ![](/img/linxuant-jishi/t-1-12-1.PNG)   
 ![](/img/linxuant-jishi/t-1-12-2.PNG)   
 
@@ -67,7 +67,7 @@ tags:
 
 * 答案：5.52 * 10^(-6)
 
-### 1-15~1-17 PLA算法
+#### 1-15~1-17 PLA算法
 
 	class DataSet:
 
@@ -124,7 +124,7 @@ tags:
 	        return current_updates
 
 
-### 1-18~1-20 Pocket算法
+#### 1-18~1-20 Pocket算法
 
 * 注意：每次找到不符合条件的点之后，pocket时会更新w的，但是只有当前w比pocket_w的错误率更小的时候才会更新pocket_w
 
@@ -164,4 +164,79 @@ tags:
 		                    halt = True
 		                    break
 		        return pocket_weight if pocket else w
+			
+## 作业二
+#### 2-1
+![](/img/linxuant-jishi/t-2-1.png)  
+* 题意：目标函数f的错误率为mu，在样本上加了噪声使得p(x/y)如上面公式（这里1-lambda就是噪声比例,由于输出y是二元的，所以加噪声的意思就是把原来的f（x）变号，成为y），求一个hyphothesis  h的有噪声的y的错误率。
+
+* 分析：这里解决的是二元分类问题，即y={-1，+1}。那么这里加噪声的意思就是1-lamba比例的（x,y）变成（x,-y）了。 
+
+当y=f（x）时，由题意我们知道h对f的错误率为mu，而y=f(x)概率为lambda，所以这部分的错误率为lambda*mu。
+
+当y不等于f(x)时，由于我们只是把y的符号翻转了，所以原来正确的变成错误的，原来错误的变成正确的，故此处h对f的错误率为1-mu,这部分错误率为（1-lambda）(1-mu)
+
+* 答案：第三项
+
+#### 2-3
+![](/img/linxuant-jishi/t-2-3.png)  
+* 题意：当N大于等于2，d_vc大于等于2时，我们可以用N^d_vc代替mH(N)。当d_vc = 10时，你想要95%的置信率，代表epsilon小于等于0.05，那么我们需要多要样本（N）？
+* 分析:![](/img/linxuant-jishi/t-2-3-1.png)  
+* 答案：460,000
+
+#### 2-4
+![](/img/linxuant-jishi/t-2-4.png)  
+* 题意：d_vc=50，置信率为1-delta,delta = 0.05,训练样本数为N。当N = 10000时，分别用下面五个公式计算epsilon的值，哪个最小（最紧）？
+* 分析：当N>=2,d<sub>vc</sub>>=2时，m<sub>H</sub>(N)<=N<sup>d<sub>vc</sub></sup>
+* 答案： Decoroye
+
+#### 2-6
+![](/img/linxuant-jishi/t-2-6.png)  
+* 题意：positive and negatibe intervals on R的mH(N)为多少？
+* 分析：对于positive interval,N个点将R(x轴)划分为N+1个区间，任选两个点作为边界：C<sub>N+1</sub><sup>2</sup>种，再加上1个没有内部正值的情况，共C<sub>N+1</sub><sup>2</sup>+1，加上negative interval就是乘以2，还要减去重复计算的，左边全是负右边全是正的N-1种，和左边全是正右边全是负的N-1种，所以结果为C<sub>N+1</sub><sup>2</sup>+1-2(N-1)=N<sup>2</sup>-N+2
+
+#### 2-8
+![](/img/linxuant-jishi/t-2-8.png)    
+* 题意：利用x1^2+x2^2作为分类线，形成两个同心圆，在同心圆里面的归为+1类，在同心圆外面的归为-1类。假设有N个样本，求mH(N)
+* 分析：二维positive Interval
+* 答案：最后一项
+
+#### 2-9
+![](/img/linxuant-jishi/t-2-9.png)    
+* 题意：Hyphothesis如上面图所示，求H得d_vc
+* 分析：从H可以看出，这道题就是perceptrons，课堂上已经证明过其d_vc = D+1
+* 答案：D+1
+
+#### 2-10
+![](/img/linxuant-jishi/t-2-10.png)   
+* 题意：s是一个d维向量的集合，而且每个d维向量对应一个+1或一个-1。求其VC-dimension
+* 分析：无论N多大，s中d维的向量(这个向量的每一位只能是0/1)最多有2<sup>d</sup>，每一个d维的向量可以对应+1/-1，一共有2<sup>2<sup>d</sup></sup>种可能，所以VC-dimension = 2<sup>d</sup>(?)
+* 答案：第一项
+
+#### 2-11
+![](/img/linxuant-jishi/t-2-11.png)  
+* 题意：H的定义如上图，求H得d_vc
+* 分析：三角波，参数控制的是波的周期，因此所有N都能shatter(?)
+* 答案：无穷
+
+#### 2-12
+![](/img/linxuant-jishi/t-2-12。png)   
+* 题意：下列哪些式子是成长函数mH（N）的上限函数，当N大于等于d_vc大于等于2
+* 分析：选项1：括号内的不会比是N的时候大，因此不可能是mH(N)mH(N)的上界； 选项2：这是个常数，不可能是上界； 
+选项3：m<sub>H</sub>(N)的一个上界是2<sip>N</sup>，2<sup>i</sup>m<sub>H</sub>(N−i)对应过去的上界就是2<sup>i</sup>⋅2<sup>(N−i)</sup>=2N ;选项4：N<sub>dvc</ub>是mH(N)的上界，但是开平方就不一定了。
+* 答案：第三项
+
+#### 2-13
+![](/img/linxuant-jishi/t-2-13.png)  
+* 题意：下面哪些mH(N)是不可能的
+* 分析：(N)是单增的，而第四项并不是，第四项有平整，有突增。
+* 答案：第四项
+
+#### 2-14
+![](/img/linxuant-jishi/t-2-14.png)   
+题意：下面这些选项中有的是正确的，有的是错误的。在正确的选项中找到范围最小的。
+（2）分析：这道题求的是并集合的d_vc。
+                   首先，我们看左边边界。若有一个Hk是空集，那么d_vc=0,所以最小值是0
+                   之后，我们看右边边界。由于是交集，我们最多保留最小的d_vc
+（3）答案：第四项
 
