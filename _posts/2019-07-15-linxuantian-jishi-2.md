@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "林轩田-机器学习基石-笔记1"
+title:      "林轩田-机器学习基石-笔记2"
 subtitle:   ""
 date:       2019-07-13 12:00:00
 author:     "btyzkelili"
