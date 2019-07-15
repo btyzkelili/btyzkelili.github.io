@@ -220,7 +220,7 @@ tags:
 * 答案：无穷
 
 #### 2-12
-![](/img/linxuant-jishi/t-2-12。png)   
+![](/img/linxuant-jishi/t-2-12.png)   
 * 题意：下列哪些式子是成长函数mH（N）的上限函数，当N大于等于d_vc大于等于2
 * 分析：选项1：括号内的不会比是N的时候大，因此不可能是mH(N)mH(N)的上界； 选项2：这是个常数，不可能是上界； 
 选项3：m<sub>H</sub>(N)的一个上界是2<sip>N</sup>，2<sup>i</sup>m<sub>H</sub>(N−i)对应过去的上界就是2<sup>i</sup>⋅2<sup>(N−i)</sup>=2N ;选项4：N<sub>dvc</ub>是mH(N)的上界，但是开平方就不一定了。
