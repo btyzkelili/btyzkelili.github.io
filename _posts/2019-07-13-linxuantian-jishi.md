@@ -227,6 +227,38 @@ tags:
 ![](/img/linxuant-jishi/6-8.jpg)  
 * 当有一个好的H:存在break point,有好的数据D:数据足够多（N够大），并且有好的A:选出够小的E<sub>in</sub>，就probably learned.
 
+## Lecture 7: The VC Dimension
+#### 7.1 VC Dimension Definition
+![](/img/linxuant-jishi/7-1.jpg)  
+* d<sub>vc</sub>=minimum breakpoint-1 （最大的non-break point） 
+* 好的H:d<sub>vc</sub> is finite  
+![](/img/linxuant-jishi/7-2.jpg) 
+在d<sub>vc</sub>有限的情况下：
+* 不管A选了一个大的E<sub>in</sub>还是小的E<sub>in</sub>，E<sub>in</sub>都近似E<sub>out</sub> 
+* 不论数据X的分布P是怎样的
+* 不论目标函数是怎样的
+#### 7.2 VC Dimension of Perceptrons
+![](/img/linxuant-jishi/7-3.jpg) 
+* d<sub>VC</sub>=d(perceptron维度)+1  
+![](/img/linxuant-jishi/7-5.jpg) 
+![](/img/linxuant-jishi/7-4.jpg) 
+* VC dimension<==>perceptron dimension：hypothesis是由**w**表示的，这些**w**是hypothsis的自由度，类比可以调的旋钮
+* VC dimension:在二元分类时有多少自由度，衡量自由度告诉我们H到底好不好
+* VC dimension物理意义：H有多少可以调的旋钮（自由度），可以估计H复杂度，以此来决定用多少资料。
+![](/img/linxuant-jishi/7-6.jpg) 
+#### 7.3 VC Bound REphrase
+##### 7.3.1 Penalty for Model Complexity
+![](/img/linxuant-jishi/7-7.jpg) 
+* 通过对VC Bound进行变换，可以得到如上结果，发现一味追求小的E<sub>in</sub>（强的H）不一定得到好的E<sub>out</sub>，要同时到考虑到模型复杂付出的代价，最好的d<sub>VC</sub>在中间。
+##### 7.3.2 Sample Complexity
+![](/img/linxuant-jishi/7-8.jpg) 
+* VC Bound对资料复杂度:理论上需要1万倍的d<sub>VC</sub>，但实际上N大约为10倍的d<sub>VC</sub>就可取到比较好的效果,可以看到VC Bound非常宽松
+##### 7.3.3 Looseness of VC Bound
+![](/img/linxuant-jishi/7-9.jpg) 
+* VC Bound很宽松，但我们设计机器学习演算法时用到的不是它严格的部分（例如3.2提到的理论上使用1万倍的d<sub>VC</sub>），而是他表现出的哲学信息（例如3.1提到的不要一味追求最强的H）。
+#### 7.4 Summary
+* Learning happens if finite d<sub>VC</sub>,large N, and low E<sub>in</sub>
+
 ## Summary : Why Can Machines Learn?
 ---
 由于no-free-lunch理论，我们是没有办法证明g在为学习的资料上与f到底有多接近的，所以如果我们要证明学习是可能的，必须在一个假设下：Hoeffding's Intequality
@@ -279,14 +311,29 @@ H是二维平面上所有的直线(也就是说这个问题就是线性可分问
 
 也就是说，B(N,k)是有上界的，并且这个上界是多项式级的，所以当存在break point时，成长函数的上界B(N,k)有上界，即当有break point时，成长函数有多项式上界(多项式上界乘以趋于0的值最终还会趋于零)。
 
-我们得到了成长函数有上界的结论，那么我们能不能把这个成长函数直接放到上面我们算的概率式子中，就想下图所示那样？
+我们得到了成长函数有上界的结论，那么我们能不能把这个成长函数直接放到上面我们算的概率式子中，就像下图所示那样？
 
 ![](/img/linxuant-jishi/z-11.png)  
 
 其实是不能直接得到这个式子的，但是我们经过数学推导可以得到下面的式子：
 
-![](/img/linxuant-jishi/z-12.png)  
+![](/img/linxuant-jishi/z-12.png)    
 
-在N很大的前提下，可以得到上式，称为VC bound
+在N很大的前提下，可以得到上式，称为VC bound，到此我们知道了当M无穷大时，如果有break point时，成长函数有多项式上界，也就是learning是成立的。  
 
-所以我们可以得到结论：H中有无限h时，若成长函数存在break point，那么learning也是成立的
+再进一步，我们已经知道了在有break point的时候学习是可能的，那么break point的值对学习效果有什么影响吗？  
+
+我们把最大的non-break point定义为VC Dimension, d<sub>vc</sub>:    
+![](/img/linxuant-jishi/7-1.jpg)   
+由于d<sub>vc</sub>是最大的非break point的点，而break point是H不能自由变化的点(不能=2<sup>n</sup>)，可以知道如果d<sub>vc</sub>是有限的，说明H的自由度是有限的，所以d<sub>vc</sub>衡量了H的复杂度，其实d<sub>vc</sub> = d + 1(d:perceptron的维度，也就是构成h的**w**的个数?,+1加的是w<sub>0</sub>?)  
+
+根据以上定义，对vc bound进行变换,可以得到：  
+![](/img/linxuant-jishi/7-7.jpg)     
+发现对于一个特定的问题，一味追求小的E<sub>in</sub>（强的H）不一定得到好的E<sub>out</sub>，要同时到考虑到模型复杂(d<sub>vc</sub>变大，H的自由度变高模型复杂度增加)付出的代价，最好的dVC在中间。  
+
+重写VC bound：  
+![](/img/linxuant-jishi/7-8.jpg)  
+可以得到对于数据量N，理论上需要1万倍的d<sub>VC</sub>，但实际上N大约为10倍的d<sub>VC</sub>就可取到比较好的效果,可以看到VC Bound非常宽松,但我们设计机器学习演算法时用到的不是它严格的部分（例如3.2提到的理论上使用1万倍的dVC），而是他表现出的哲学信息（例如3.1提到的不要一味追求最强的H）。   
+
+所以我们可以得到结论：H中有限h时，learning成立，H中有无限h时，若成长函数存在break point，那么learning也是成立的。对于一个问题，可以有多种不同d<sub>vc</sub>(break point)的H可选，不要追求选择d<sub>vc</sub>大的，会引入模型的复杂度。  
+
