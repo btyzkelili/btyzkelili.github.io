@@ -325,7 +325,7 @@ H是二维平面上所有的直线(也就是说这个问题就是线性可分问
 
 我们把最大的non-break point定义为VC Dimension, d<sub>vc</sub>:    
 ![](/img/linxuant-jishi/7-1.jpg)   
-由于d<sub>vc</sub>是最大的非break point的点，而break point是H不能自由变化的点(不能=2<sup>n</sup>)，可以知道如果d<sub>vc</sub>是有限的，说明H的自由度是有限的，所以d<sub>vc</sub>衡量了H的复杂度，其实d<sub>vc</sub> = d + 1(d:perceptron的维度，也就是构成h的**w**的个数?,+1加的是w<sub>0</sub>?)  
+由于d<sub>vc</sub>是最大的非break point的点，而break point是H不能自由变化的点(不能=2<sup>n</sup>)，?所以m<sub>H</sub><=N<sup>d<sub>vc</sub></sup>,可以知道如果d<sub>vc</sub>是有限的，说明H的自由度是有限的，所以d<sub>vc</sub>衡量了H的复杂度，其实d<sub>vc</sub> = d + 1(d:perceptron的维度，也就是构成h的**w**的个数?,+1加的是w<sub>0</sub>?)  
 
 根据以上定义，对vc bound进行变换,可以得到：  
 ![](/img/linxuant-jishi/7-7.jpg)     
