@@ -105,6 +105,45 @@ tags:
 #### 7.4 Summary
 * Learning happens if finite d<sub>VC</sub>,large N, and low E<sub>in</sub>
 
+## Lecture 8: Noise
+#### 8.1 Noise
+* **x**,y都有可能有noise  
+![](/img/linxuant-jishi/8-1.jpg) 
+* Noise可以看做会变色的弹珠，有P概率为黄色，1-P概率为绿，但是整个罐子黄色弹珠符合某种分布，仍可用抽样方式还预测罐子中有多少黄色，即**x**来自P(**x**)，同时y来自P(y&#124;**x**)，训练的时候是如此，测试的时候还是如此，所以将VC重写后VC仍然适用。  
+![](/img/linxuant-jishi/8-2.jpg) 
+* Target Distribution(P(y&#124;**x**):告诉我们最好的预测(mini-target)是什么，有多少Noise  
+* 对于之前讨论的determinstic target f 是Target Distribution的特殊情况：P(y&#124;**x**)=1 for y=f(**x**)  
+* P(**x**)告诉我们常见、重要的点是哪些，因为P(**x**)大代表经常在E<sub>in</sub>中被sample到，同时在算E<sub>out</sub>的时候也会比较重要，所以这些点我们要尽量预测接近mini-target,这个mini-target是由Target Distribution得来的，它告诉我们最理想的mini-target是什么，所以机器学习要做到的是：在常见的点上要做的好。  
+![](/img/linxuant-jishi/8-3.jpg)   
+* 将f(**x**)替换为P(y|**x**)  
+![](/img/linxuant-jishi/8-4.jpg)   
+* 资料的性质不能推测出f的性质  
+#### 8.2 Error Measure
+![](/img/linxuant-jishi/8-5.jpg)   
+* pointwise error measure:计算每个点的error再平均  
+![](/img/linxuant-jishi/8-6.jpg)   
+* 0/1 error：分类问题  
+* squared error：实数问题  
+![](/img/linxuant-jishi/8-7.jpg)   
+* P(y/**x**)和err的衡量影响mini-target：相同P(y/**x**)时，用不同的错误衡量方法会得到不同的mini-target的结果    
+* 使用0/1 error方法时，最好的mini-target=P(y/**x**)最大的  
+* 使用squared error方法时，最好的mini-target是P(y/**x**)的加权平均           
+![](/img/linxuant-jishi/8-8.jpg)  
+* 错误衡量法法告诉A它选的g好不好                                                                                                        
+#### 8.3 Choice of Error Measure
+![](/img/linxuant-jishi/8-9.jpg)         
+* 不同的应用需要不同的error measure,最希望的是使用者告诉我们他们最想要的错误衡量方式，但是往往使用者不能准确描述出，此时对于A设计者有两个解决方案：1.使用能说服自己的错误衡量方式(plausible) 2.使用A容易计算的错误衡量方式  
+![](/img/linxuant-jishi/8-10.jpg)     
+* err是真正的错误衡量方法，![](/img/linxuant-jishi/8-11.jpg)是在A中使用的错误衡量方法  
+#### 8.4 Weighted Classification 
+![](/img/linxuant-jishi/8-12.jpg)     
+* Error Matrix:不同错误情况的权重不同   
+![](/img/linxuant-jishi/8-13.jpg)     
+* 将E<sup>W</sup>转换为E<sup>0/1</sup>通过copying的方式    
+![](/img/linxuant-jishi/8-14.jpg)           
+* Weighted Pocket Alforithm：之前学习的Pocket Algorithm可以解决E<sup>0/1</sup>问题，通过修改两个地方：1.以增大1000倍的可能性选到-1的点 2.比较新找到的E<sup>W</sup>与手里E<sup>W</sup>的大小，改造为适合不同错误权重不同的问题  
+* reduction:将新问题转化到已有办法的旧问题  
+
 ## Summary : Why Can Machines Learn?
 ---
 由于no-free-lunch理论，我们是没有办法证明g在为学习的资料上与f到底有多接近的，所以如果我们要证明学习是可能的，必须在一个假设下：Hoeffding's Intequality
@@ -182,4 +221,7 @@ H是二维平面上所有的直线(也就是说这个问题就是线性可分问
 可以得到对于数据量N，理论上需要1万倍的d<sub>VC</sub>，但实际上N大约为10倍的d<sub>VC</sub>就可取到比较好的效果,可以看到VC Bound非常宽松,但我们设计机器学习演算法时用到的不是它严格的部分（例如3.2提到的理论上使用1万倍的dVC），而是他表现出的哲学信息（例如3.1提到的不要一味追求最强的H）。   
 
 所以我们可以得到结论：H中有限h时，learning成立，H中有无限h时，若成长函数存在break point，那么learning也是成立的。对于一个问题，可以有多种不同d<sub>vc</sub>(break point)的H可选，不要追求选择d<sub>vc</sub>大的，会引入模型的复杂度。  
+
+以上我们讨论的都是没有噪声的情况，但在实际情况中，**x**,y都有可能有噪声，**x**来自P(**x**)，y来自P(y&#124;**x**)，训练个测试时都是如此，所以我们将VC进行重写之后仍然使用，也就是说在有噪声的情况下以上结论仍然成立。
+
 
