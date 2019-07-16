@@ -326,63 +326,63 @@ tags:
 * 19题用老师的数据集，x是9维，每一维度都用2-17的方式得到最小E<sub>in</sub>的h,最后9个h里找到最小E<sub>in</sub>的h作为全局h
 * 20题对最好的h用测试集计算E<sub>out</sub>  
 ```
-import numpy as np
+	import numpy as np
 
-class decisonStump(object):
-    def get_train_dataset(self,path):
-        with open(path,'r') as f:
-            rawData=f.readlines()
-        dimension=len(rawData[0].strip().split(' '))-1
-        data_count=len(rawData)
-        data_set=np.zeros((data_count,dimension+1))
-        for i in range(data_count):
-            data_set[i:]=rawData[i].strip().split(' ')
-        return data_set,dimension,data_count
-    def get_theta(self,dataset):
-        data_count=len(dataset)
-        l=np.sort(dataset)
-        theta=np.zeros((data_count,1))
-        for i in range(data_count-1):
-            theta[i]=(l[i]+l[i+1])/2
-        theta[-1]=1
-        return theta
-    def question19(self):
-        dataset,dimension,data_count=self.get_train_dataset('hw2_train.dat.txt')
-        s1=[]
-        theta_best1=[]
-        E_in=[]
-        for i in range(dimension):
-            theta=self.get_theta(dataset[:,i])
-            e_in = np.zeros((2, data_count))
-            for j in range(data_count):
-                a=dataset[:,-1]*np.sign(dataset[:,i]-theta[j])
-                e_in[0][j] = (data_count - np.sum(a)) / (2 * data_count)  # 数组只有-1和+1，可直接计算出-1所占比例
-                e_in[1][j] = (data_count - np.sum(-a)) / (2 * data_count)
-            min0,min1=np.min(e_in[0,:]),np.min(e_in[1,:])
-            if min0>=min1:
-                s1.append(-1)
-                theta_best1.append(theta[np.argmin(e_in[1])])
-            else:
-                s1.append(1)
-                theta_best1.append(theta[np.argmin(e_in[0])])
-            E_in.append(np.min(np.min(e_in)))
-        minS=s1[np.argmin(E_in)]
-        minTheta=theta_best1[np.argmin(E_in)]
-        print(np.min(E_in))
-        return minS,minTheta
-    def question20(self):
-        s,theta=self.question19()
-        dataset, dimension, data_count = self.get_train_dataset('hw2_test.dat.txt')
-        E_out=[]
-        for i in range(dimension):
-            a=dataset[:,-1]*np.sign(dataset[:,i]-theta)*s
-            e_out=(data_count-np.sum(a))/(2*data_count)
-            E_out.append(e_out)
-        print(np.min(E_out))
+	class decisonStump(object):
+	    def get_train_dataset(self,path):
+		with open(path,'r') as f:
+		    rawData=f.readlines()
+		dimension=len(rawData[0].strip().split(' '))-1
+		data_count=len(rawData)
+		data_set=np.zeros((data_count,dimension+1))
+		for i in range(data_count):
+		    data_set[i:]=rawData[i].strip().split(' ')
+		return data_set,dimension,data_count
+	    def get_theta(self,dataset):
+		data_count=len(dataset)
+		l=np.sort(dataset)
+		theta=np.zeros((data_count,1))
+		for i in range(data_count-1):
+		    theta[i]=(l[i]+l[i+1])/2
+		theta[-1]=1
+		return theta
+	    def question19(self):
+		dataset,dimension,data_count=self.get_train_dataset('hw2_train.dat.txt')
+		s1=[]
+		theta_best1=[]
+		E_in=[]
+		for i in range(dimension):
+		    theta=self.get_theta(dataset[:,i])
+		    e_in = np.zeros((2, data_count))
+		    for j in range(data_count):
+			a=dataset[:,-1]*np.sign(dataset[:,i]-theta[j])
+			e_in[0][j] = (data_count - np.sum(a)) / (2 * data_count)  # 数组只有-1和+1，可直接计算出-1所占比例
+			e_in[1][j] = (data_count - np.sum(-a)) / (2 * data_count)
+		    min0,min1=np.min(e_in[0,:]),np.min(e_in[1,:])
+		    if min0>=min1:
+			s1.append(-1)
+			theta_best1.append(theta[np.argmin(e_in[1])])
+		    else:
+			s1.append(1)
+			theta_best1.append(theta[np.argmin(e_in[0])])
+		    E_in.append(np.min(np.min(e_in)))
+		minS=s1[np.argmin(E_in)]
+		minTheta=theta_best1[np.argmin(E_in)]
+		print(np.min(E_in))
+		return minS,minTheta
+	    def question20(self):
+		s,theta=self.question19()
+		dataset, dimension, data_count = self.get_train_dataset('hw2_test.dat.txt')
+		E_out=[]
+		for i in range(dimension):
+		    a=dataset[:,-1]*np.sign(dataset[:,i]-theta)*s
+		    e_out=(data_count-np.sum(a))/(2*data_count)
+		    E_out.append(e_out)
+		print(np.min(E_out))
 
 
 
-if __name__=='__main__':
-    decision=decisonStump()
-    decision.question20()
+	if __name__=='__main__':
+	    decision=decisonStump()
+	    decision.question20()
 ```
