@@ -247,8 +247,142 @@ tags:
         b.右边的问题是有没有K-1。试想，有一个H1，把平面所有点分为+1，H2把平面所有点分为-1。H1并H2的话为VC dimension为1，而各自d_vc加起来为0(?)
 * 答案：第四项
 
+### 2-16
+![](/img/linxuant-jishi/t-2-16.png)   
+* 题意：“positive and negative rays”:mH（N）=2N。在区间[-1，1]上取N个点，考虑s不重复时，theta可以取在N-1个内部间隔，s=1/-1，所以有2(N-1)，再加上全是0和全是1的两种情况，共有2N种情况。对于h:选一个位置为theta，在s=1时，比theta大的点是1,比theta小的是0，在s=-1时，比theta大的点是0,比theta小的是1，而真正的f是theta=0的情况。现在我们要计算h下的E<sub>out</sub>
+* 分析：由2-1知道加噪声后的计算方式。这道题加20%噪声，所以lambda = 0.8,我们只要求mu就可以了。mu的定义是h（x）与f(x)的不同，即错误率。f(x)=s（x）=sign(x),h(x)=s * sign（x-theta),根据s和theta分类讨论:
+	1.s = 1, theta > 0:错误率为theta/2
+        2.s=1，theta < 0;错误率为|theta|/2
+        3.s=-1,theta > 0:错误率为 （2 - theta）/2
+        4.s=-1,theta <0:错误率为（2- | theta |）/2
+        综上，s=1 错误率为 |theta|/2;s = -1，错误率为（2-|theta|）/2
+        利用一个式子写出来： mu = (s+1)/2 * (|theta|/2) -  (s-1)/2 * ((2-|theta|)/2)
+       最后 E_out = mu * lambda + (1 - lambda) * (1 - mu)，lambda = 0.8,mu带入可以得到答案
+* 答案：0.5+0.3*s*(|theta| - 1)
+
+#### 2-17 2-18
+![](/img/linxuant-jishi/t-2-17-18.png)   
+* 17题自己随机在[-1,1]抽取20个点，对于2* 20个h，分别计算他们的E<sub>in</sub>，得到最小的
+* 18题，在17题的基础上用16题的结论计算E<sub>out</sub>
+```
+	import numpy as np
+	import random
+	class decisonStump(object):
+	    def __init__(self,dimension,data_count,noise):
+		self.dimension=dimension
+		self.data_count=data_count
+		self.noise=noise
+	    def generate_dataset(self):
+		dataset=np.zeros((self.data_count,self.dimension+1))
+		for i in range(self.data_count):
+		    x=random.uniform(-1,1)
+		    line=[]
+		    line.append(x)
+		    y=np.sign(x)*np.sign(random.uniform(0,1)-self.noise)
+		    line.append(y)
+		    dataset[i:]=line
+		return dataset
+	    def get_theta(self,dataset):
+		l=np.sort(dataset[:,0])
+		theta=np.zeros((self.data_count,1))
+		for i in range(self.data_count-1):
+		    theta[i]=(l[i]+l[i+1])/2
+		theta[-1]=1
+		return theta
+	    def question1718(self):
+		sum_e_in = 0
+		sum_e_out=0
+		for i in range(5000):
+		    dataset = self.generate_dataset()
+		    theta=self.get_theta(dataset)
+		    e_in = np.zeros((2, self.data_count))
+		    for j in range(self.data_count):#直接数组计算，省略循环
+			a=dataset[:,1]*np.sign(dataset[:,0]-theta[j])# dataset[:,1]是真实的y，np.sign(dataset[:,0]-theta[j])是h预测出的y
+			e_in[0][j] = (self.data_count - np.sum(a)) / (2 * self.data_count)  # 数组只有-1和+1，可直接计算出-1所占比例,-1就是预测错误的
+			e_in[1][j] = (self.data_count - np.sum(-a)) / (2 * self.data_count)
+		    min0, min1 = np.min(e_in[0]), np.min(e_in[1])
+		    s=0
+		    theta_best=0
+		    if min0 < min1:
+			s = 1
+			theta_best = theta[np.argmin(e_in[0]),0]
+			sum_e_in+=min0
+		    else:
+			s = -1
+			theta_best = theta[np.argmin(e_in[1]),0]
+			sum_e_in+=min1
+		    e_out=0.5+0.3*s*(np.abs(theta_best)-1)
+		    sum_e_out+=e_out
+		print(sum_e_in/5000,sum_e_out/5000)
+
+
+	if __name__=='__main__':
+	    decision=decisonStump(1,20,0.2)
+	    decision.question1718()
+```
+#### 2-19 2-20
+![](/img/linxuant-jishi/t-2-17-19.png)   
+![](/img/linxuant-jishi/t-2-17-20.png)   
+* 19题用老师的数据集，x是9维，每一维度都用2-17的方式得到最小E<sub>in</sub>的h,最后9个h里找到最小E<sub>in</sub>的h作为全局h
+* 20题对最好的h用测试集计算E<sub>out</sub>
+```
+import numpy as np
+
+class decisonStump(object):
+    def get_train_dataset(self,path):
+        with open(path,'r') as f:
+            rawData=f.readlines()
+        dimension=len(rawData[0].strip().split(' '))-1
+        data_count=len(rawData)
+        data_set=np.zeros((data_count,dimension+1))
+        for i in range(data_count):
+            data_set[i:]=rawData[i].strip().split(' ')
+        return data_set,dimension,data_count
+    def get_theta(self,dataset):
+        data_count=len(dataset)
+        l=np.sort(dataset)
+        theta=np.zeros((data_count,1))
+        for i in range(data_count-1):
+            theta[i]=(l[i]+l[i+1])/2
+        theta[-1]=1
+        return theta
+    def question19(self):
+        dataset,dimension,data_count=self.get_train_dataset('hw2_train.dat.txt')
+        s1=[]
+        theta_best1=[]
+        E_in=[]
+        for i in range(dimension):
+            theta=self.get_theta(dataset[:,i])
+            e_in = np.zeros((2, data_count))
+            for j in range(data_count):
+                a=dataset[:,-1]*np.sign(dataset[:,i]-theta[j])
+                e_in[0][j] = (data_count - np.sum(a)) / (2 * data_count)  # 数组只有-1和+1，可直接计算出-1所占比例
+                e_in[1][j] = (data_count - np.sum(-a)) / (2 * data_count)
+            min0,min1=np.min(e_in[0,:]),np.min(e_in[1,:])
+            if min0>=min1:
+                s1.append(-1)
+                theta_best1.append(theta[np.argmin(e_in[1])])
+            else:
+                s1.append(1)
+                theta_best1.append(theta[np.argmin(e_in[0])])
+            E_in.append(np.min(np.min(e_in)))
+        minS=s1[np.argmin(E_in)]
+        minTheta=theta_best1[np.argmin(E_in)]
+        print(np.min(E_in))
+        return minS,minTheta
+    def question20(self):
+        s,theta=self.question19()
+        dataset, dimension, data_count = self.get_train_dataset('hw2_test.dat.txt')
+        E_out=[]
+        for i in range(dimension):
+            a=dataset[:,-1]*np.sign(dataset[:,i]-theta)*s
+            e_out=(data_count-np.sum(a))/(2*data_count)
+            E_out.append(e_out)
+        print(np.min(E_out))
 
 
 
-
-
+if __name__=='__main__':
+    decision=decisonStump()
+    decision.question20()
+```
