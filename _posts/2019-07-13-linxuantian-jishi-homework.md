@@ -247,7 +247,7 @@ tags:
         b.右边的问题是有没有K-1。试想，有一个H1，把平面所有点分为+1，H2把平面所有点分为-1。H1并H2的话为VC dimension为1，而各自d_vc加起来为0(?)
 * 答案：第四项
 
-### 2-16
+#### 2-16
 ![](/img/linxuant-jishi/t-2-16.png)   
 * 题意：“positive and negative rays”:mH（N）=2N。在区间[-1，1]上取N个点，考虑s不重复时，theta可以取在N-1个内部间隔，s=1/-1，所以有2(N-1)，再加上全是0和全是1的两种情况，共有2N种情况。对于h:选一个位置为theta，在s=1时，比theta大的点是1,比theta小的是0，在s=-1时，比theta大的点是0,比theta小的是1，而真正的f是theta=0的情况。现在我们要计算h下的E<sub>out</sub>
 * 分析：由2-1知道加噪声后的计算方式。这道题加20%噪声，所以lambda = 0.8,我们只要求mu就可以了。mu的定义是h（x）与f(x)的不同，即错误率。f(x)=s（x）=sign(x),h(x)=s * sign（x-theta),根据s和theta分类讨论:
