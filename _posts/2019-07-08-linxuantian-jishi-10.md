@@ -17,7 +17,7 @@ tags:
 * logictic regression可以看做是soft的二元分类，他要得到的结果不再是0或1，而是一个0~1的值(概率)
 
 ![](/img/linxuant-jishi/10-5.PNG)  
-* 理想情况下，我们希望得到(x,P(+1|x))样子的数据，就可以像之前一样做，但实际情况下我们只有y=0/1的数据(就像我们需要告知病人他得病的概率，但是没有人知道这个概率是多少，我们只能知道他最有到底有没有得病)，这个0/1的数据可以看成是理想情况下数据的有噪声版本。
+* 理想情况下，我们希望得到(x,P(+1&#124;x))样子的数据，就可以像之前一样做，但实际情况下我们只有y=0/1的数据(就像我们需要告知病人他得病的概率，但是没有人知道这个概率是多少，我们只能知道他最有到底有没有得病)，这个0/1的数据可以看成是理想情况下数据的有噪声版本。
 
 ![](/img/linxuant-jishi/10-6.PNG)  
 * 我们先根据w和x计算s，再通过logistic function将s转换到01之间，就可以得到logistic hypothesis
@@ -34,7 +34,7 @@ tags:
 
 ![](/img/linxuant-jishi/10-8.PNG)
 * 要求在h在的可能性最大值，就是求上图中的min(化简过程略，较简单)
-* cross-entropy error: err(**w**,**x**,y)=ln(1+exp(-y**w****x))
+* cross-entropy error: err(**w**,**x**,y)=ln(1+exp(-y**wx**))
 
 ![](/img/linxuant-jishi/10-9.PNG)
 * 找到E<sub>in</sub>之后，怎么找到w使得E<sub>in</sub>最小？
@@ -42,7 +42,7 @@ tags:
 ### 10.3 Gradient of Logistic Regression Error
 ![](/img/linxuant-jishi/10-10.PNG)
 * E<sub>in</sub>的图像如上图左，对其求梯度(求对**w**的偏微分)，最小的E<sub>in</sub>就是使其梯度为0(神经网络是求解试得梯度为0的w的一种方法)
-* 这个梯度就是损失函数？神经网络向着减小它的方向改进，直到收敛
+* 梯度的反方向是下降最快的方向
 
 ### 10.4 Gradient Descent
 ![](/img/linxuant-jishi/10-11.PNG)
@@ -52,5 +52,5 @@ tags:
 
 ![](/img/linxuant-jishi/10-13.PNG)
 ![](/img/linxuant-jishi/10-14.PNG)
-* 如何确定yita呢？应该在坡度大的地方走的步子大一点，坡度小的地方走的步子小一点，所以yita和||E<sub>in</sub>(w)||成正比
+* 如何确定yita呢？应该在坡度大的地方走的步子大一点，坡度小的地方走的步子小一点，所以yita和&#124;&#124;E<sub>in</sub>(w)&#124;&#124;成正比
 * 新的yita叫做学习率
