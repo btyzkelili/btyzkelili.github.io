@@ -321,10 +321,10 @@ tags:
 	    decision.question1718()
 ```
 #### 2-19 2-20
-![](/img/linxuant-jishi/t-2-17-19.png)   
-![](/img/linxuant-jishi/t-2-17-20.png)   
+![](/img/linxuant-jishi/t-2-19.png)   
+![](/img/linxuant-jishi/t-2-20.png)   
 * 19题用老师的数据集，x是9维，每一维度都用2-17的方式得到最小E<sub>in</sub>的h,最后9个h里找到最小E<sub>in</sub>的h作为全局h
-* 20题对最好的h用测试集计算E<sub>out</sub>
+* 20题对最好的h用测试集计算E<sub>out</sub>  
 ```
 import numpy as np
 
