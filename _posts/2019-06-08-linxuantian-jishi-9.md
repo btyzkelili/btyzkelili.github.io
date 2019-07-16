@@ -13,7 +13,7 @@ tags:
 # 三. How Can Machines Learn?
 ## Lecture 9: Linear Regression
 ---  
-### 1. Linear REegression Alforithm
+### 1. Linear Regression Alforithm
 ![](/img/linxuant-jishi/9-1.jpg)   
 * 与perceptron很像，perceptron=h(x)=sign(w<sup>T</sup>x)  
 ![](/img/linxuant-jishi/9-2.jpg)    
@@ -29,7 +29,7 @@ tags:
 * 当X<sup>T</sup>X可逆时称为pseudo-inserse矩阵X<sup>+</sup>,大部分情况下X<sup>T</sup>X都是可逆的，因为N>>d+1(?)，不可逆时，用其他方式定义X<sup>+</sup>  
 ![](/img/linxuant-jishi/9-10.jpg)  
 ### 2.Is Linear Regression a 'Learning Alforithm'?
-* 用以w<sub>LIN</sub>为参数的线性方程对原始数据做预测,可以得到拟合值y^=Xw<sub>LIN</sub>=XX†y。称H=XX†为Hat Matrix，帽子矩阵，因为H为 y带上了帽子，成为y^。  
+* 用以w<sub>LIN</sub>为参数的线性方程对原始数据做预测,可以得到拟合值y^=Xw<sub>LIN</sub>=XX<sup>†</sup>y。称H=XX<sup>†</sup>为Hat Matrix，帽子矩阵，因为H为 y带上了帽子，成为y^。  
 ![](/img/linxuant-jishi/9-11.jpg)  
 * 这张图展示的是在N维实数空间R<sup>N</sup>中，注意这里是N=数据笔数， y中包含所有真实值，y^中包含所有预测值，与之前讲的输入空间是d+1维是不一样的(?)。X中包含d+1个column(?)  
 * y^=Xw<sub>LIN</sub>是X的一个线性组合,X中每个column对应R<sup>N</sup>下的一个向量，共有d+1个这样的向量，因此y^在这d+1个向量所构成的 span(平面)上。  
