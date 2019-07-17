@@ -95,6 +95,7 @@ if __name__ == '__main__':
     new[:, 4] = features[:, 1] * features[:, 1]//x1<sup>2</sup>
     new[:, 5] = features[:, 2] * features[:, 2]//x2<sup>2</sup>
     return new
+```
 
 #### 3-18 logistic regression
 * 下载训练样本和测试样本,进行逻辑回归。取迭代步长ita = 0.001/0.01,使用或不适用随机梯度下降,迭代次数T=2000(训练2000轮)，求E_out
