@@ -58,9 +58,7 @@ legendre Polynomials：不同此方之间相互垂直(?)
 ![](/img/linxuant-jishi/14-11.PNG)
 ![](/img/linxuant-jishi/14-12.PNG)  
 
-看似VC Dimension变大了，但由于加了限制之后，我i们实际上有效的VC Dimension
-
-其实变小了(?)
+看似VC Dimension变大了，但由于加了限制之后，我们实际上有效的VC Dimension其实变小了
 
 ### 14.4 General Regularizers
 
