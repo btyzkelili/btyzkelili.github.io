@@ -15,7 +15,7 @@ tags:
 #### 3-13 linear regression
 * 在[-1,1]上生成1000个点，并且用f=sign(x1<sup>2</sup> + x2<sup>2</sup> - 0.6) 得到其标签，再加上10%的噪声，用线性回归方式训练1000次，
 计算其平均错误率E<sub>in</sub>(训练集上的错误率)  
-```   
+```python3   
     import random
     import numpy as np
 
