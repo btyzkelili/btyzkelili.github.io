@@ -87,7 +87,7 @@ tags:
 #### 3-14 特征转换
 * 上一题的基础上，增加特征转换处理(1,x1,x2,x1x2,x1<sup>2</sup>,x2<sup>2</sup>)，再次计算得到最佳的**w**   
    
- ```
+ ```python3
      def feature_transform(features):
         new = np.zeros((len(features), 6))
         new[:, 0:3] = features[:, :] * 1//前三位和原来的一样
@@ -99,7 +99,7 @@ tags:
 
 #### 3-18 logistic regression
 * 下载训练样本和测试样本,进行逻辑回归。取迭代步长ita = 0.001/0.01,使用或不适用随机梯度下降,迭代次数T=2000(训练2000轮)，求E_out   
-```
+```python3
     import numpy as np
 
 
