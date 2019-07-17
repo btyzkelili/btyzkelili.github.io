@@ -12,13 +12,18 @@ tags:
 ---
 ## 算法
 ![](/img/rl/1-9.jpg)
-* 之所以是基于策略：输出的不是value，而是直接输出动作的概率，根据概率直接选择动作，不需要再根据value去选择动作
-* 损失函数loss=-log(prob)*v<sub>t</sub>:-log(prob)表示在状态s所选动作a的吃惊度，如果选该动作的可能性越小，log(prob)就越大，v<sub>t</sub>是选该动作的奖励，由于policy gradient是回合更新，所以v<sub>t</sub>由该回合所有选择动作a得到的reward共同决定的，意味着回合过程中，需要存储该回合经验，包括所有状态、动作、奖励，如果奖励是正值且较大，则-log(prob)越大，表示选了一个小可能的动作但是奖励很大，即惊喜度较大，需要对参数进行较大的修改，若奖励是负值，-log(prob)变得更小（先增大，后取负），示意图如下：![](/img/rl/1-10.jpg)
+* 之所以是基于策略： 输出的不是value，而是直接输出动作的概率，根据概率直接选择动作，不需要再根据value去选择动作
+
+* 损失函数loss = -log(prob) * v<sub>t</sub>: -log(prob)表示在状态s所选动作a的吃惊度，如果选该动作的可能性越小，-log(prob)就越大，v<sub>t</sub>是选该动作的奖励，由于policy gradient是回合更新，所以v<sub>t</sub>由该回合所有选择动作a得到的reward共同决定的，意味着回合过程中，需要存储该回合经验，包括所有状态、动作、奖励，如果奖励是正值且较大，则-log(prob)越大，表示选了一个小可能的动作但是奖励很大，即惊喜度较大，需要对参数进行较大的修改，若奖励是负值，-log(prob)变得更小（先增大，后取负），示意图如下：![](/img/rl/1-10.jpg)
+
 * Policy Gradient的核心思想是更新参数时有两个考虑：如果这个回合选择某一动作，下一回合选择该动作的概率大一些，然后再看奖惩值，如果奖惩是正的，那么会放大这个动作的概率，如果奖惩是负的，就会减小该动作的概率。
+
 * Policy Gradient可以选择**连续动作**，而基于值的q-learning和DQN等则不行，DQN为什么不行？因为即使DQN可以表示很多状态，但是它输出的是value，并且需要找到value的最大值，连续情况下无法穷举每一个动作，也就无法计算最大Q值对应的动作。
+
 ## 实例
 
-### RL_brain.py
+#### RL_brain.py
+```python3
 	
 	This part of code is the reinforcement learning brain, which is a brain of the agent.
 	All decisions are made in here.
@@ -139,8 +144,10 @@ tags:
 	        discounted_ep_rs -= np.mean(discounted_ep_rs)
 	        discounted_ep_rs /= np.std(discounted_ep_rs)
 	        return discounted_ep_rs
+```
 
-### run_CartPole.py  
+#### run_CartPole.py  
+```python3
 
 	Policy Gradient, Reinforcement Learning.
 	The cart pole example
@@ -207,9 +214,10 @@ tags:
 	            break
 	
 	        observation = observation_
-	```
-### run_MountainCar.py  
-	```
+```
+#### run_MountainCar.py  
+	
+```python3
 	Policy Gradient, Reinforcement Learning.
 	The cart pole example
 	View more on my tutorial page: https://morvanzhou.github.io/tutorials/
@@ -281,4 +289,5 @@ tags:
 	            break
 	
 	        observation = observation_
+```
 
