@@ -95,7 +95,7 @@ class PolicyGradient:
 
 	self.all_act_prob = tf.nn.softmax(all_act, name='act_prob')  # use softmax to convert to probability
 
-		# 计算loss:
+	# 计算loss:
 	with tf.name_scope('loss'):
 	    # to maximize total reward (log_p * R) is to minimize -(log_p * R), and the tf only have minimize(loss)
 	    neg_log_prob = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=all_act, labels=self.tf_acts)   # this is negative log of chosen action
@@ -111,7 +111,7 @@ class PolicyGradient:
 	action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
 	return action
 
-	# 存储回合经验
+    # 存储回合经验
     def store_transition(self, s, a, r):
 	self.ep_obs.append(s)
 	self.ep_as.append(a)
@@ -131,7 +131,7 @@ class PolicyGradient:
 	self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
 	return discounted_ep_rs_norm
 
-	# 计算vt
+    # 计算vt
     def _discount_and_norm_rewards(self):
 	# discount episode rewards
 	discounted_ep_rs = np.zeros_like(self.ep_rs)
