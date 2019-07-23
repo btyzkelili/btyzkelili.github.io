@@ -193,7 +193,7 @@ for i_episode in range(3000):
 
 	RL.store_transition(observation, action, reward)
 
-		# 回合结束，更新
+	# 回合结束，更新
 	if done:
 	    ep_rs_sum = sum(RL.ep_rs)
 
