@@ -10,6 +10,10 @@ catalog:    true
 tags:
     - Machine Learning
 ---  
+>> 参考
+>> 台大李宏毅老师机器学习课程  
+>> [1.7实现 https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW](https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW)
+
 ## 0. Machine Learning
 ![](/img/lhy_ml/1.png)  
 在有机器学习之前，实现人工智能的方式：hand-crafied rules，成千上万的if，永远无法超越创造者，
@@ -105,7 +109,7 @@ error(E<sub>out</sub>)由bias和variance构成，如果错误主要来源于bias
 4. 验证集验证，根据验证集与训练集的error情况，判断是underfitting还是overfitting，回1
 
 #### 1.7 预测PM2.5实例
-[来源https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW](https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW)
+
 ```python3
 import csv, os
 import numpy as np
