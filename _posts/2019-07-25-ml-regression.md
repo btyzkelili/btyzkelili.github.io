@@ -10,10 +10,6 @@ catalog:    true
 tags:
     - Machine Learning
 ---  
->> 参考
->> 台大李宏毅老师机器学习课程  
->> [1.7实现 https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW](https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW)
-
 ## 0. Machine Learning
 ![](/img/lhy_ml/1.png)  
 在有机器学习之前，实现人工智能的方式：hand-crafied rules，成千上万的if，永远无法超越创造者，
@@ -318,7 +314,9 @@ plt.savefig(os.path.join(os.path.dirname(__file__), "figures/Compare"))
 plt.show()
 
 ```
-
+## Reference
+* 台大李宏毅老师机器学习课程  
+* [1.7实现 https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW](https://github.com/maplezzz/ML2017S_Hung-yi-Lee_HW)
 
 
 
