@@ -10,7 +10,6 @@ catalog:    true
 tags:
     - Machine Learning
 ---  
-# Classification:Probabilistic Generative Model
 ## 1. Clssificatin as Regression?
 ![](/img/lhy_ml/c-1.png)  
 Regression对于model好坏的定义不适用于classification，如右图，存在>>1的点时，regression更倾向于向右偏来减小平方和err  
@@ -19,14 +18,14 @@ Regression对于model好坏的定义不适用于classification，如右图，存
 ![](/img/lhy_ml/c-2.png)  
 我们要想知道现有的x(一笔资料)时类别一还是类别二，可以计算P(C1/x)，要计算这个概率，需要通过training data得到P(C1)=C1数据个数/总数据个数、
 P(C2)、P(x/C1)、P(x/C2)  
+
 P(x)可以知道任意x产生的概率，所以叫做Generative Model(生成模型)  
 
 怎么计算一个在训练集中没有的x的P(x/C1)呢？P(C1)P(C2)好计算，那P(x/C1)、P(x/C2)如何得到？
 
 ![](/img/lhy_ml/c-3.png)  ![](/img/lhy_ml/c-4.png)  
 我们假设每一个类别的x的产生来自于一个高斯分布，高斯分布有两个参数∑(也就是σ<sup>2</sup>)和μ，任何一个高斯分布都可以sample出这个类别的training data，
-但sample出的概率L(μ,∑)不同，假设每笔资料之间独立分布，L(μ,∑)=f(x1)f(x2)...f(xn)(图中n=79笔该类别资料)，找到使L(μ,∑)最大的μ,∑的高斯分布f的结果作为产生x
-的概率
+但sample出的概率L(μ,∑)不同，假设每笔资料之间独立分布，L(μ,∑)=f(x1)f(x2)...f(xn)(图中n=79笔该类别资料)，找到使L(μ,∑)最大的μ,∑的高斯分布f的结果作为产生x的概率
 
 为什么要用高斯分布？
 ![](/img/lhy_ml/c-10.png)  
