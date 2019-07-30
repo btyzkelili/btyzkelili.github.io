@@ -43,7 +43,7 @@ square error的微分仍然很小，更新速度慢
 
 ## 4. Multi-class Classification
 ![](/img/lhy_ml/l-13.png)  ![](/img/lhy_ml/l-14.png)  
-将二分类中sigmoid换成了sofmax
+将二分类中sigmoid换成了softmax
 
 ## 5. Limitation of Logistic Regression
 ![](/img/lhy_ml/l-15.png)  
