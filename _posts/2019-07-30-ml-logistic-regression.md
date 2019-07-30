@@ -34,7 +34,35 @@ square error的微分仍然很小，更新速度慢
 
 ## 3. Discriminative and Generative
 ![](/img/lhy_ml/l-10.png)  
-他们的model/function set(P(C1/x))是相同的，但是根据相同的训练集挑出的f不同，w,b不同，Generative
+他们的model/function set(P(C1/x))是相同的，但是根据相同的训练集挑出的f不同
 ![](/img/lhy_ml/l-11.png)  
+对于上面的例子，使用Naive Bayes(features之间独立)，得到[1,1]是类型2，而非类型1，这是因为Generative模型会脑补，即使训练集里class2中没有[1,1]，模型也不会认为class2的[1,1]概率为0  
+
+![](/img/lhy_ml/l-12.png)  
+通常认为discriminative更好一些，但是在训练数据较少，有noise时，generative会更有效
+
+## 4. Multi-class Classification
+![](/img/lhy_ml/l-13.png)  ![](/img/lhy_ml/l-14.png)  
+将二分类中sigmoid换成了sofmax
+
+## 5. Limitation of Logistic Regression
+![](/img/lhy_ml/l-15.png)  
+logistic regression是一个线性模型，无法分开非线性数据
+
+![](/img/lhy_ml/l-16.png)  
+fearture transformation：可以对非线性数据进行特征转换，变为线性数据，再使用logistic regression
+
+![](/img/lhy_ml/l-17.png)  
+特征转换过程可以看作一次logistic regression，多个logistic regression串接完成对非线性数据的分类，多个logistic regression的参数可以同时训练，也就是deep learning
+
+
+
+
+
+
+
+
+
+
 
 
