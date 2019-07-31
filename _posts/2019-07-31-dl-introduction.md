@@ -28,9 +28,8 @@ Deep = Many hidden layers，具体是多少层看自己理解，一般来说，�
 #### 2.2 Goodness of f
 ![](/img/lhy_ml/d-4.png)  
 ![](/img/lhy_ml/d-5.png)  
-y=f(**x**)=σ(**w**<sup>L</sup>···σ(**w**<sup>1</sup>**x**+b<sup>1</sip>)···b<sup>L</sup>)，根据每笔资料的输出y与target y计算cross entropy
-得到l，再把所有资料的l加起来得到L，L最小的f最好的f
+y=f(**x**)=σ(**w**<sup>L</sup>···σ(**w**<sup>1</sup>**x**+b<sup>1</sup>)···+b<sup>L</sup>)，根据每笔资料输出的y 与 target y 计算cross entropy 得到l，再把所有资料的l加起来得到L，L最小的f最好
 
 #### 2.3 pick the best f
 ![](/img/lhy_ml/d-6.png)  
-对L的每一个w求微分，得到梯度∇L，用梯度下降更新w
+对L的每一个w(整个网络中所有的w)求微分，得到梯度∇L，用梯度下降更新w
