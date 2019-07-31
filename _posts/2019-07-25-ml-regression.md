@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Machine Learning"
-subtitle:   "Regression"
+subtitle:   "Introduction of Machine Learning and Regression"
 date:       2019-07-25
 author:     "btyzkelili"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
