@@ -56,6 +56,7 @@ fearture transformation：可以对非线性数据进行特征转换，变为线
 特征转换过程可以看作一次logistic regression，多个logistic regression串接完成对非线性数据的分类，多个logistic regression的参数可以同时训练，也就是deep learning
 
 ## 6. Logistic.py
+#### 1. 公式版
 ```python3
 import pandas as pd
 import numpy as np
@@ -213,6 +214,7 @@ if __name__ == "__main__":
     df.to_csv(os.path.join(output_dir + 'lr_output.csv'), sep='\t', index=False)
 
 ```
+#### 2. NN版(Keras)
 ```python3
 import pandas as pd
 import numpy as np
@@ -277,7 +279,8 @@ if __name__ == "__main__":
     model.compile(loss='binary_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
-
+    
+    
     model.fit(x_train, y_train, batch_size=32, epochs=50)
     score = model.evaluate(x_test, y_ans)
     result = np.squeeze(model.predict(x_test))
@@ -296,3 +299,6 @@ if __name__ == "__main__":
         os.mkdir(output_dir)
     df.to_csv(os.path.join(output_dir + 'nn_output.csv'), sep='\t', index=False)
 ```
+
+#### 3. batch
+batch中的data是由keras随机选取的，每个batch更新一次参数，一个epoch里更新N/batch次参数，一共进行epochs * N/batch次参数更新，当batch_size=1时，就是SGD，但是一般不会这样使用，因为GPU可以并行计算，计算一笔资料的微分和10笔资料的微分时间差不多，而SGD一轮的更新次数N/batch更大，导致它一轮用时要比batch=10更久，并且多笔资料更稳定，如果不用batch，total loss只会沿着一个方向走，没有随机性容易到local minima，而且使用全部资料时由于GPU并行有限，不能全部并行计算，所以，GPU + batch才可以做到上述优点
