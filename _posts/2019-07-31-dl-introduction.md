@@ -34,10 +34,30 @@ y=f(**x**)=σ(**w**<sup>L</sup>···σ(**w**<sup>1</sup>**x**+b<sup>1</sup>)·�
 ![](/img/lhy_ml/d-6.png)  
 对L的每一个w(整个网络中所有的w)求微分，得到梯度∇L，用梯度下降更新w
 
-## 3. Summary
+#### 2.4 Summary
 Deep Learning可以看作是先对x进行特征抽取/特征转换(隐层)，再进行机器学习步骤(输出层)，只不过特征转换是机器自己学，可以说是解问题的不同方法，有的问题也可以人工特征转换，但是一般语音图像常用Deep Learning
 
+## 3. Why deep Learning?
+#### 1. Modularization
+![](/img/lhy_ml/why-0.png)  
+理论上来说，只要神经元足够多，一层网络可以模拟任何函数，那为什么还要deep learning？虽然只用一层确实可以表示任何函数，但是要做到这件事会浪费参数没有效率，deep用更少的神经元可以做到相同的事，也就需要更少的参数，也就是需要更少的data，所以相同数据量、神经元情况下，Deep表现更好  
 
+举例来说：  
+![](/img/lhy_ml/why-1.png)  
+![](/img/lhy_ml/why-2.png)  
+直接用一层网络分类，长发男人的数据量少，训练效果可能不太好，但是多层网络，先去分男女、长短发，这两个的数据都不少，后面长发男人的分类器只要从前面得到男人+长发的结果就好，也就可以只用少量的数据但是训练的很好，所以，Deep -> Modularization，是更有效地使用参数和数据，相同神经元情况下，Deep要比单层网络表现更好，同时机器的modularization是自动学习的。
 
+deep learning不是用大量的数据用复杂的网络硬train暴力碾压所以效果好，如果真的有无限多的数据，直接table loop up就好了，不用再用机器去学习，反而就是因为数据有限，才要让机器学习  
 
+之前讲deep是先特征转换，与现在的modularization有什么联系呢？
+![](/img/lhy_ml/why-3.png)  
+特征转换相当于将折叠原来的数据空间，折叠后的一个点相当于原来的多个点，也就更有效的使用数据
+
+#### 2. End-to-end Learning
+![](/img/lhy_ml/why-4.png)  
+
+#### 3. Complex Task
+![](/img/lhy_ml/why-5.png)  
+![](/img/lhy_ml/why-6.png)  
+deep才可以让像的变不像，不像的变像，deep多层转换的时候，把原本不像的map到一起，也会把原来像的分开
 
