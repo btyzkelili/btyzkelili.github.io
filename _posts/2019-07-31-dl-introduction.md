@@ -59,5 +59,5 @@ deep learning不是用大量的数据用复杂的网络硬train暴力碾压所�
 #### 3. Complex Task
 ![](/img/lhy_ml/why-5.png)  
 ![](/img/lhy_ml/why-6.png)  
-deep才可以让像的变不像，不像的变像，deep多层转换的时候，把原本不像的map到一起，也会把原来像的分开
+很多层网络才可以让像的变不像，不像的变像，deep多层转换的时候，把原本不像的map到一起，也会把原来像的分开
 
