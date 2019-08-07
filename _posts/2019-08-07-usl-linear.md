@@ -21,7 +21,7 @@ tags:
 
 #### HAC
 ![](/img/lhy_ml/uslm-3.png)  
-可以不用事先决定要分多少类，
+可以不用事先决定要分多少类
 
 ## 3.Distribute Representation
 ![](/img/lhy_ml/uslm-4.png)  
@@ -34,7 +34,7 @@ tags:
 
 求解PCA/W:  
 ![](/img/lhy_ml/uslm-7.png)  
-x可以看作是由很多component={u1,u2,...}组成，也就是x = c1u1+c2u2+...+x<sup>-</sup>，c=0/1  
+x可以看作是由很多component={u1,u2,...}组成，也就是x = c1u1+c2u2+...+x<sup>-</sup>  
 ![](/img/lhy_ml/uslm-8.png)  
 L要求每一笔资料x的 x-x<sup>-</sup> 和 由component组成的结果 尽可能相同，对比前面PCA，{w1,w2,...}={u1,u2,...}，求解W就是求解U
 ![](/img/lhy_ml/uslm-9.png)  
