@@ -68,103 +68,105 @@ tags:
 * 答案：5.52 * 10^(-6)
 
 #### 1-15~1-17 PLA算法
+```python
 
-	class DataSet:
+class DataSet:
 
-	    def __init__(self, filename):
-	        self.input = []
-	        self.output = []
-	        self.load_data(filename)
-	
-	    def load_data(self, filename):
-	        with open(filename) as csvfile:
-	            reader = csv.reader(csvfile, delimiter='\t')
-	            for line in reader:
-	                x = line[0].split()
-	                x.insert(0, '1')
-	                y = line[1]
-	                self.input.append(x)
-	                self.output.append(y)
+    def __init__(self, filename):
+	self.input = []
+	self.output = []
+	self.load_data(filename)
+
+    def load_data(self, filename):
+	with open(filename) as csvfile:
+	    reader = csv.reader(csvfile, delimiter='\t')
+	    for line in reader:
+		x = line[0].split()
+		x.insert(0, '1')
+		y = line[1]
+		self.input.append(x)
+		self.output.append(y)
 
 
-	class PLA:
-	    def __init__(self, train_name='hw1_15_train.dat', test_name=None):
-	        self.train_set = DataSet(train_name)
-	        if test_name:
-	            self.test_set = DataSet(test_name)
-	
-	    def random_cycle_pla(self, times=2000, eta=1, print_out=False):
-	        total_updates = 0
-	        data_set = list(zip(self.train_set.input, self.train_set.output))
-	        for idx, _ in enumerate(range(times)):
-	            shuffle(data_set)
-	            current_updates = self.naive_pla(data_set, eta, print_out)
-	            total_updates += current_updates
-	        return total_updates / times
-	
-	    def naive_pla(self, data_set=None, eta=1, print_out=False):
-	        """naive perceptron learning algorithm"""
-	        current_updates = 0
-	        w = np.zeros(5)
-	        if not data_set:
-	            data_set = list(zip(self.train_set.input, self.train_set.output))
-	        while True:
-	            halt = True
-	            for item in data_set:
-	                x = np.array(item[0], dtype=float)
-	                y = np.array(item[1], dtype=int)
-	                if sign(w.dot(x)) != y:
-	                    current_updates += 1
-	                    w += eta * y * x
-	                    halt = False
-	            if halt:
-	                break
-	        if print_out:
-	            print(f'第{idx}次终止次数：{current_updates}')
-	        return current_updates
+class PLA:
+    def __init__(self, train_name='hw1_15_train.dat', test_name=None):
+	self.train_set = DataSet(train_name)
+	if test_name:
+	    self.test_set = DataSet(test_name)
 
+    def random_cycle_pla(self, times=2000, eta=1, print_out=False):
+	total_updates = 0
+	data_set = list(zip(self.train_set.input, self.train_set.output))
+	for idx, _ in enumerate(range(times)):
+	    shuffle(data_set)
+	    current_updates = self.naive_pla(data_set, eta, print_out)
+	    total_updates += current_updates
+	return total_updates / times
+
+    def naive_pla(self, data_set=None, eta=1, print_out=False):
+	"""naive perceptron learning algorithm"""
+	current_updates = 0
+	w = np.zeros(5)
+	if not data_set:
+	    data_set = list(zip(self.train_set.input, self.train_set.output))
+	while True:
+	    halt = True
+	    for item in data_set:
+		x = np.array(item[0], dtype=float)
+		y = np.array(item[1], dtype=int)
+		if sign(w.dot(x)) != y:
+		    current_updates += 1
+		    w += eta * y * x
+		    halt = False
+	    if halt:
+		break
+	if print_out:
+	    print(f'第{idx}次终止次数：{current_updates}')
+	return current_updates
+```
 
 #### 1-18~1-20 Pocket算法
 
 * 注意：每次找到不符合条件的点之后，pocket时会更新w的，但是只有当前w比pocket_w的错误率更小的时候才会更新pocket_w
-
+```python
 		
-		def errors_count(self, w, data_set):
-		        """"统计errors发生次数"""
-		        count = 0
-		        for x, y in data_set:
-		            x = np.array(x, dtype=float)
-		            y = np.array(y, dtype=int)
-		            if sign(w.dot(x)) != y:
-		                count += 1
-		        return count
-		def pocket_algorithm(self, update_times=50, pocket=True):
-		        """pocket=True： 返回pocketWeight
-		        否则返回w"""
-		        data_set = list(zip(self.train_set.input, self.train_set.output))
-		        updates = 0
-		        w = np.zeros(5)
-		        pocket_weight = np.zeros(45)
-		        min_errors = sys.maxsize
-		        halt = False
-		        while not halt:
-		            shuffle(data_set)
-		            for item in data_set:
-		                x = np.array(item[0], dtype=float)
-		                y = np.array(item[1], dtype=int)
-		                if sign(w.dot(x)) != y:
-		                    w = w + y * x  # w每次都更新
-		                    updates += 1
-		                    # print(f'updates: {updates}')
-		                    errors_count = self.errors_count(w, data_set)
-		                    if errors_count < min_errors:
-		                        min_errors = errors_count
-		                        pocket_weight = w  # pocket_weight只有遇到更好的w才更新
-		                if updates >= update_times or min_errors == 0:
-		                    halt = True
-		                    break
-		        return pocket_weight if pocket else w
-			
+def errors_count(self, w, data_set):
+	""""统计errors发生次数"""
+	count = 0
+	for x, y in data_set:
+	    x = np.array(x, dtype=float)
+	    y = np.array(y, dtype=int)
+	    if sign(w.dot(x)) != y:
+		count += 1
+	return count
+def pocket_algorithm(self, update_times=50, pocket=True):
+	"""pocket=True： 返回pocketWeight
+	否则返回w"""
+	data_set = list(zip(self.train_set.input, self.train_set.output))
+	updates = 0
+	w = np.zeros(5)
+	pocket_weight = np.zeros(45)
+	min_errors = sys.maxsize
+	halt = False
+	while not halt:
+	    shuffle(data_set)
+	    for item in data_set:
+		x = np.array(item[0], dtype=float)
+		y = np.array(item[1], dtype=int)
+		if sign(w.dot(x)) != y:
+		    w = w + y * x  # w每次都更新
+		    updates += 1
+		    # print(f'updates: {updates}')
+		    errors_count = self.errors_count(w, data_set)
+		    if errors_count < min_errors:
+			min_errors = errors_count
+			pocket_weight = w  # pocket_weight只有遇到更好的w才更新
+		if updates >= update_times or min_errors == 0:
+		    halt = True
+		    break
+	return pocket_weight if pocket else w
+```
+
 ## 作业二
 #### 2-1
 ![](/img/linxuant-jishi/t-2-1.png)  
@@ -264,125 +266,125 @@ tags:
 ![](/img/linxuant-jishi/t-2-17-18.png)   
 * 17题自己随机在[-1,1]抽取20个点，对于2* 20个h，分别计算他们的E<sub>in</sub>，得到最小的
 * 18题，在17题的基础上用16题的结论计算E<sub>out</sub>
-```
-	import numpy as np
-	import random
-	class decisonStump(object):
-	    def __init__(self,dimension,data_count,noise):
-		self.dimension=dimension
-		self.data_count=data_count
-		self.noise=noise
-	    def generate_dataset(self):
-		dataset=np.zeros((self.data_count,self.dimension+1))
-		for i in range(self.data_count):
-		    x=random.uniform(-1,1)
-		    line=[]
-		    line.append(x)
-		    y=np.sign(x)*np.sign(random.uniform(0,1)-self.noise)
-		    line.append(y)
-		    dataset[i:]=line
-		return dataset
-	    def get_theta(self,dataset):
-		l=np.sort(dataset[:,0])
-		theta=np.zeros((self.data_count,1))
-		for i in range(self.data_count-1):
-		    theta[i]=(l[i]+l[i+1])/2
-		theta[-1]=1
-		return theta
-	    def question1718(self):
-		sum_e_in = 0
-		sum_e_out=0
-		for i in range(5000):
-		    dataset = self.generate_dataset()
-		    theta=self.get_theta(dataset)
-		    e_in = np.zeros((2, self.data_count))
-		    for j in range(self.data_count):#直接数组计算，省略循环
-			a=dataset[:,1]*np.sign(dataset[:,0]-theta[j])# dataset[:,1]是真实的y，np.sign(dataset[:,0]-theta[j])是h预测出的y
-			e_in[0][j] = (self.data_count - np.sum(a)) / (2 * self.data_count)  # 数组只有-1和+1，可直接计算出-1所占比例,-1就是预测错误的
-			e_in[1][j] = (self.data_count - np.sum(-a)) / (2 * self.data_count)
-		    min0, min1 = np.min(e_in[0]), np.min(e_in[1])
-		    s=0
-		    theta_best=0
-		    if min0 < min1:
-			s = 1
-			theta_best = theta[np.argmin(e_in[0]),0]
-			sum_e_in+=min0
-		    else:
-			s = -1
-			theta_best = theta[np.argmin(e_in[1]),0]
-			sum_e_in+=min1
-		    e_out=0.5+0.3*s*(np.abs(theta_best)-1)
-		    sum_e_out+=e_out
-		print(sum_e_in/5000,sum_e_out/5000)
+```python
+import numpy as np
+import random
+class decisonStump(object):
+    def __init__(self,dimension,data_count,noise):
+	self.dimension=dimension
+	self.data_count=data_count
+	self.noise=noise
+    def generate_dataset(self):
+	dataset=np.zeros((self.data_count,self.dimension+1))
+	for i in range(self.data_count):
+	    x=random.uniform(-1,1)
+	    line=[]
+	    line.append(x)
+	    y=np.sign(x)*np.sign(random.uniform(0,1)-self.noise)
+	    line.append(y)
+	    dataset[i:]=line
+	return dataset
+    def get_theta(self,dataset):
+	l=np.sort(dataset[:,0])
+	theta=np.zeros((self.data_count,1))
+	for i in range(self.data_count-1):
+	    theta[i]=(l[i]+l[i+1])/2
+	theta[-1]=1
+	return theta
+    def question1718(self):
+	sum_e_in = 0
+	sum_e_out=0
+	for i in range(5000):
+	    dataset = self.generate_dataset()
+	    theta=self.get_theta(dataset)
+	    e_in = np.zeros((2, self.data_count))
+	    for j in range(self.data_count):#直接数组计算，省略循环
+		a=dataset[:,1]*np.sign(dataset[:,0]-theta[j])# dataset[:,1]是真实的y，np.sign(dataset[:,0]-theta[j])是h预测出的y
+		e_in[0][j] = (self.data_count - np.sum(a)) / (2 * self.data_count)  # 数组只有-1和+1，可直接计算出-1所占比例,-1就是预测错误的
+		e_in[1][j] = (self.data_count - np.sum(-a)) / (2 * self.data_count)
+	    min0, min1 = np.min(e_in[0]), np.min(e_in[1])
+	    s=0
+	    theta_best=0
+	    if min0 < min1:
+		s = 1
+		theta_best = theta[np.argmin(e_in[0]),0]
+		sum_e_in+=min0
+	    else:
+		s = -1
+		theta_best = theta[np.argmin(e_in[1]),0]
+		sum_e_in+=min1
+	    e_out=0.5+0.3*s*(np.abs(theta_best)-1)
+	    sum_e_out+=e_out
+	print(sum_e_in/5000,sum_e_out/5000)
 
 
-	if __name__=='__main__':
-	    decision=decisonStump(1,20,0.2)
-	    decision.question1718()
+if __name__=='__main__':
+    decision=decisonStump(1,20,0.2)
+    decision.question1718()
 ```
 #### 2-19 2-20
 ![](/img/linxuant-jishi/t-2-19.png)   
 ![](/img/linxuant-jishi/t-2-20.png)   
 * 19题用老师的数据集，x是9维，每一维度都用2-17的方式得到最小E<sub>in</sub>的h,最后9个h里找到最小E<sub>in</sub>的h作为全局h
 * 20题对最好的h用测试集计算E<sub>out</sub>  
-```
-	import numpy as np
+```python
+import numpy as np
 
-	class decisonStump(object):
-	    def get_train_dataset(self,path):
-		with open(path,'r') as f:
-		    rawData=f.readlines()
-		dimension=len(rawData[0].strip().split(' '))-1
-		data_count=len(rawData)
-		data_set=np.zeros((data_count,dimension+1))
-		for i in range(data_count):
-		    data_set[i:]=rawData[i].strip().split(' ')
-		return data_set,dimension,data_count
-	    def get_theta(self,dataset):
-		data_count=len(dataset)
-		l=np.sort(dataset)
-		theta=np.zeros((data_count,1))
-		for i in range(data_count-1):
-		    theta[i]=(l[i]+l[i+1])/2
-		theta[-1]=1
-		return theta
-	    def question19(self):
-		dataset,dimension,data_count=self.get_train_dataset('hw2_train.dat.txt')
-		s1=[]
-		theta_best1=[]
-		E_in=[]
-		for i in range(dimension):
-		    theta=self.get_theta(dataset[:,i])
-		    e_in = np.zeros((2, data_count))
-		    for j in range(data_count):
-			a=dataset[:,-1]*np.sign(dataset[:,i]-theta[j])
-			e_in[0][j] = (data_count - np.sum(a)) / (2 * data_count)  # 数组只有-1和+1，可直接计算出-1所占比例
-			e_in[1][j] = (data_count - np.sum(-a)) / (2 * data_count)
-		    min0,min1=np.min(e_in[0,:]),np.min(e_in[1,:])
-		    if min0>=min1:
-			s1.append(-1)
-			theta_best1.append(theta[np.argmin(e_in[1])])
-		    else:
-			s1.append(1)
-			theta_best1.append(theta[np.argmin(e_in[0])])
-		    E_in.append(np.min(np.min(e_in)))
-		minS=s1[np.argmin(E_in)]
-		minTheta=theta_best1[np.argmin(E_in)]
-		print(np.min(E_in))
-		return minS,minTheta
-	    def question20(self):
-		s,theta=self.question19()
-		dataset, dimension, data_count = self.get_train_dataset('hw2_test.dat.txt')
-		E_out=[]
-		for i in range(dimension):
-		    a=dataset[:,-1]*np.sign(dataset[:,i]-theta)*s
-		    e_out=(data_count-np.sum(a))/(2*data_count)
-		    E_out.append(e_out)
-		print(np.min(E_out))
+class decisonStump(object):
+    def get_train_dataset(self,path):
+	with open(path,'r') as f:
+	    rawData=f.readlines()
+	dimension=len(rawData[0].strip().split(' '))-1
+	data_count=len(rawData)
+	data_set=np.zeros((data_count,dimension+1))
+	for i in range(data_count):
+	    data_set[i:]=rawData[i].strip().split(' ')
+	return data_set,dimension,data_count
+    def get_theta(self,dataset):
+	data_count=len(dataset)
+	l=np.sort(dataset)
+	theta=np.zeros((data_count,1))
+	for i in range(data_count-1):
+	    theta[i]=(l[i]+l[i+1])/2
+	theta[-1]=1
+	return theta
+    def question19(self):
+	dataset,dimension,data_count=self.get_train_dataset('hw2_train.dat.txt')
+	s1=[]
+	theta_best1=[]
+	E_in=[]
+	for i in range(dimension):
+	    theta=self.get_theta(dataset[:,i])
+	    e_in = np.zeros((2, data_count))
+	    for j in range(data_count):
+		a=dataset[:,-1]*np.sign(dataset[:,i]-theta[j])
+		e_in[0][j] = (data_count - np.sum(a)) / (2 * data_count)  # 数组只有-1和+1，可直接计算出-1所占比例
+		e_in[1][j] = (data_count - np.sum(-a)) / (2 * data_count)
+	    min0,min1=np.min(e_in[0,:]),np.min(e_in[1,:])
+	    if min0>=min1:
+		s1.append(-1)
+		theta_best1.append(theta[np.argmin(e_in[1])])
+	    else:
+		s1.append(1)
+		theta_best1.append(theta[np.argmin(e_in[0])])
+	    E_in.append(np.min(np.min(e_in)))
+	minS=s1[np.argmin(E_in)]
+	minTheta=theta_best1[np.argmin(E_in)]
+	print(np.min(E_in))
+	return minS,minTheta
+    def question20(self):
+	s,theta=self.question19()
+	dataset, dimension, data_count = self.get_train_dataset('hw2_test.dat.txt')
+	E_out=[]
+	for i in range(dimension):
+	    a=dataset[:,-1]*np.sign(dataset[:,i]-theta)*s
+	    e_out=(data_count-np.sum(a))/(2*data_count)
+	    E_out.append(e_out)
+	print(np.min(E_out))
 
 
 
-	if __name__=='__main__':
-	    decision=decisonStump()
-	    decision.question20()
+if __name__=='__main__':
+    decision=decisonStump()
+    decision.question20()
 ```
