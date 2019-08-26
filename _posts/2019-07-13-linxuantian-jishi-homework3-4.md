@@ -15,10 +15,11 @@ tags:
 #### 3-13 linear regression
 * 在[-1,1]上生成1000个点，并且用f=sign(x1<sup>2</sup> + x2<sup>2</sup> - 0.6) 得到其标签，再加上10%的噪声，用线性回归方式训练1000次，
 计算其平均错误率E<sub>in</sub>(训练集上的错误率)  
+
 ```python   
+
 import random
 import numpy as np
-
 
 #target function f(x1, x2) = sign(x1^2 + x2^2 - 0.6)
 def target_function(x1, x2):
@@ -99,6 +100,7 @@ if __name__ == '__main__':
 
 #### 3-18 logistic regression
 * 下载训练样本和测试样本,进行逻辑回归。取迭代步长ita = 0.001/0.01,使用或不适用随机梯度下降,迭代次数T=2000(训练2000轮)，求E_out   
+
 ```python
 import numpy as np
 
@@ -209,7 +211,7 @@ if __name__ == '__main__':
 ```
 
 #### 4-13 正则化线性回归
-* 正则化线性回归，参数λ=10，计算E<sub>in</sub>、E<sub>out</out>  
+* 正则化线性回归，参数λ=10，计算E<sub>in</sub>、E<sub>out</sub>  
 
 ```python
 import numpy as np
