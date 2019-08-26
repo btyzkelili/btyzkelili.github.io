@@ -20,7 +20,7 @@ import random
 import numpy as np
 
 
-# target function f(x1, x2) = sign(x1^2 + x2^2 - 0.6)
+#target function f(x1, x2) = sign(x1^2 + x2^2 - 0.6)
 def target_function(x1, x2):
     if (x1 * x1 + x2 * x2 - 0.6) >= 0:
         return 1
@@ -28,7 +28,7 @@ def target_function(x1, x2):
         return -1
 
 
-# create train_set
+#create train_set
 def training_data_with_random_error(num=1000):
     features = np.zeros((num, 3))
     labels = np.zeros((num, 1))
@@ -131,7 +131,7 @@ def data_load(file_path):
     return features, labels
 
 
-# gradient descent
+#gradient descent
 def gradient_descent(X, y, w):
     # -YnWtXn
     tmp = -y * (np.dot(X, w))
@@ -144,7 +144,7 @@ def gradient_descent(X, y, w):
     return gradient
 
 
-# gradient descent 只计算一个点的梯度
+#gradient descent 只计算一个点的梯度
 def stochastic_gradient_descent(X, y, w):
     # -YnWtXn
     tmp = -y * (np.dot(X, w))
@@ -157,7 +157,7 @@ def stochastic_gradient_descent(X, y, w):
     return gradient.reshape(len(gradient), 1)
 
 
-# LinearRegression Class
+#LinearRegression Class
 class LinearRegression:
 
     def __init__(self):
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 import numpy as np
 
 
-# load data
+#load data
 def load_data(filename):
     code = open(filename, "r")
     lines = code.readlines()
@@ -232,19 +232,18 @@ def load_data(filename):
     return xn, yn
 
 
-# 正规方程:直接求解线性回归的最优解np.linalg.inv(xnp.dot(x.t,x))
-# np.eye:生成对角矩阵
+#正规方程:直接求解线性回归的最优解np.linalg.inv(xnp.dot(x.t,x))
+#np.eye:生成对角矩阵
 def calculate_w_reg(x, y, lambda_value):
     return np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x) + lambda_value * np.eye(x.shape[1])), x.transpose()), y)
 
 
-# test result
+#test result
 def calculate_E(w, x, y):
     scores = np.dot(w, x.transpose())
     predicts = np.where(scores >= 0, 1.0, -1.0)
     E_out_num = sum(predicts != y)
     return (E_out_num * 1.0) / predicts.shape[0]
-
 
 if __name__ == '__main__':
     # prepare train and test data
