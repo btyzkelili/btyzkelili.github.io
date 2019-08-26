@@ -29,6 +29,7 @@ tags:
 ## 实例
 
 #### RL_brain.py
+
 ```python
 	
 This part of code is the reinforcement learning brain, which is a brain of the agent.
@@ -153,6 +154,7 @@ class PolicyGradient:
 ```
 
 #### run_CartPole.py  
+
 ```python
 
 Policy Gradient, Reinforcement Learning.
