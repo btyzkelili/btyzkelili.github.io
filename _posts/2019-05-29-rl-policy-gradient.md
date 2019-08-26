@@ -29,7 +29,7 @@ tags:
 ## 实例
 
 #### RL_brain.py
-```python3
+```python
 	
 This part of code is the reinforcement learning brain, which is a brain of the agent.
 All decisions are made in here.
@@ -153,7 +153,7 @@ class PolicyGradient:
 ```
 
 #### run_CartPole.py  
-```python3
+```python
 
 Policy Gradient, Reinforcement Learning.
 The cart pole example
@@ -223,7 +223,7 @@ for i_episode in range(3000):
 ```
 #### run_MountainCar.py  
 	
-```python3
+```python
 Policy Gradient, Reinforcement Learning.
 The cart pole example
 View more on my tutorial page: https://morvanzhou.github.io/tutorials/
