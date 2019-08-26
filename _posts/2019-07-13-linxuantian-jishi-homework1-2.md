@@ -68,6 +68,7 @@ tags:
 * 答案：5.52 * 10^(-6)
 
 #### 1-15~1-17 PLA算法
+
 ```python
 
 class DataSet:
@@ -128,6 +129,7 @@ class PLA:
 #### 1-18~1-20 Pocket算法
 
 * 注意：每次找到不符合条件的点之后，pocket时会更新w的，但是只有当前w比pocket_w的错误率更小的时候才会更新pocket_w
+
 ```python
 		
 def errors_count(self, w, data_set):
@@ -266,6 +268,7 @@ def pocket_algorithm(self, update_times=50, pocket=True):
 ![](/img/linxuant-jishi/t-2-17-18.png)   
 * 17题自己随机在[-1,1]抽取20个点，对于2* 20个h，分别计算他们的E<sub>in</sub>，得到最小的
 * 18题，在17题的基础上用16题的结论计算E<sub>out</sub>
+
 ```python
 import numpy as np
 import random
@@ -327,6 +330,7 @@ if __name__=='__main__':
 ![](/img/linxuant-jishi/t-2-20.png)   
 * 19题用老师的数据集，x是9维，每一维度都用2-17的方式得到最小E<sub>in</sub>的h,最后9个h里找到最小E<sub>in</sub>的h作为全局h
 * 20题对最好的h用测试集计算E<sub>out</sub>  
+
 ```python
 import numpy as np
 
