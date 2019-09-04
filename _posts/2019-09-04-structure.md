@@ -15,7 +15,7 @@ tags:
 之前的模型都是输入一个vector输出另一个vector，现在输入和输出可能是其他形式：Sequence,tree structure,
 bounding box,paragraph等
 
-Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数R，X,Y越匹配输出的R越大，测试时，输入X找让F(x,y)
+Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数R，让匹配的X,的R尽可能大，测试时，输入X找让F(x,y)
 结果最大的y(穷举所有y)，也就是和x最匹配的y
 
 ![](/img/lhy_ml/structure-2.jpg)  
@@ -25,16 +25,16 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 ![](/img/lhy_ml/structure-3.jpg)  
 ![](/img/lhy_ml/structure-4.jpg)  
 
+可以看做是几率形式：  
 ![](/img/lhy_ml/structure-5.jpg)  
-可以看做是几率形式
 ![](/img/lhy_ml/structure-6.jpg)  
-有的时候任务说成几率有些奇怪，几率,有限制1，需要花时间nomolization，但几率容易想象理解
+几率形式有一定缺点，有的时候任务说成几率有些奇怪，而且几率有限制1，需要花时间normalization，但几率容易想象理解
 
 ![](/img/lhy_ml/structure-7.jpg)  
 ![](/img/lhy_ml/structure-8.jpg)  
 ![](/img/lhy_ml/structure-9.jpg)  
 ![](/img/lhy_ml/structure-10.jpg)  
-要想做到Structure Learning需要解决上面三个问题，之前讲的DNN是structure learning的特例
+要想做到Structure Learning需要解决上面三个问题
 
 ![](/img/lhy_ml/structure-11.jpg)  
 对比DNN，DNN是Structure Learning的特例，图中CE指cross entropy
