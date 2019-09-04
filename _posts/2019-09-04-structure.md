@@ -48,7 +48,7 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 这个特殊的形式是F(x,y)=w·Φ(内积)，Φ是(x,y)的特征向量，可以自己定，解决问题1主要就是想办法定义Φ
 
 ![](/img/lhy_ml/structure-14.jpg)  
-举例来说，可以(图片x，框y)的属性Φ=[图片中框内红色的比例，...]
+举例来说，(图片x，框y)的属性Φ可以=[图片中框内红色的比例，...]
 
 ![](/img/lhy_ml/structure-15.jpg)  
 因为F(x,y)是一个线性模型不能做很复杂的事，可以人工找feature，也可以用深度网络来学习得到Φ
@@ -59,7 +59,7 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 
 #### Problem3
 ![](/img/lhy_ml/structure-17.jpg)  
-已知新数据，如何训练F(x,y)
+已知数据，如何训练F(x,y)
 
 ![](/img/lhy_ml/structure-18.jpg)  
 ![](/img/lhy_ml/structure-19.jpg)  
