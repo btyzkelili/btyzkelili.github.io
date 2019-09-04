@@ -39,8 +39,16 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 ![](/img/lhy_ml/structure-11.jpg)  
 对比DNN，DNN是Structure Learning的特例，图中CE指cross entropy
 
+## Structured Linear Model
+#### Problem 1
+![](/img/lhy_ml/structure-12.jpg)  
+如果F(x,y)有特殊的形式，那么第三个就不是问题
 
+![](/img/lhy_ml/structure-13.jpg)  
+这个特殊的形式是F(x,y)=w·Φ(内积)，Φ是(x,y)的特征向量，可以自己定，解决问题1主要就是得到Φ
 
+![](/img/lhy_ml/structure-14.jpg)  
+举例来说，可以(图片x，框y)的属性Φ=[图片中框内红色的比例，...]
 
-
-
+![](/img/lhy_ml/structure-15.jpg)  
+因为F(x,y)是一个线性模型不能做很复杂的事，可以人工找feature，也可以用深度网络来学习得到Φ
