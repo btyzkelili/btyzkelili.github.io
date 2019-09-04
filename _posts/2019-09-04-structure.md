@@ -45,10 +45,25 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 如果F(x,y)有特殊的形式，那么第三个就不是问题
 
 ![](/img/lhy_ml/structure-13.jpg)  
-这个特殊的形式是F(x,y)=w·Φ(内积)，Φ是(x,y)的特征向量，可以自己定，解决问题1主要就是得到Φ
+这个特殊的形式是F(x,y)=w·Φ(内积)，Φ是(x,y)的特征向量，可以自己定，解决问题1主要就是想办法定义Φ
 
 ![](/img/lhy_ml/structure-14.jpg)  
 举例来说，可以(图片x，框y)的属性Φ=[图片中框内红色的比例，...]
 
 ![](/img/lhy_ml/structure-15.jpg)  
 因为F(x,y)是一个线性模型不能做很复杂的事，可以人工找feature，也可以用深度网络来学习得到Φ
+
+#### Problem2
+![](/img/lhy_ml/structure-16.jpg)  
+已知F(x,y)函数，怎么找与x最匹配的y，我们先假设有方法可以做到
+
+#### Problem3
+![](/img/lhy_ml/structure-17.jpg)  
+已知新数据，如何训练F(x,y)
+
+![](/img/lhy_ml/structure-18.jpg)  
+![](/img/lhy_ml/structure-19.jpg)  
+类似于感知机，我们以二维Φ为例，红色的圆点表示图片1正确的框法，蓝色表示图片1不正确的框法，红色星星表示图片2正确的框法，
+蓝色星星表示图片2不正确的框法，红色的点是哪一个由problem2来找到，w是二维平面上的一条直线，我们要让不断更新w使得红色的w·Φ最大，
+当w不再更新时即训练完成
+
