@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Structure Learning"
-subtitle:   "Introduction"
+subtitle:   "Introduction+sturctured SVM"
 date:       2019-09-04
 author:     "btyzkelili"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
@@ -71,30 +71,32 @@ Structure Learning的unified形式，训练时，F的输入是X,Y，输出常数
 
 **How to make training fast?**
 ![](/img/lhy_ml/structure-21.jpg)  
-增大δ，找一组好的feature让蓝色和红色分的更开，如果仅仅是将feature* 2，δ会增大但是R也会增大，更新次数上限不会改变，但是真实情况下，很少有问题的feature是separable，我们自己也很难找到separable的feature表示，所以接下来研究Non-separable case
+增大δ，找一组好的feature让蓝色和红色分的更开，如果仅仅是将feature* 2，δ会增大但是R也会增大，更新次数上限不会改变
+
+真实情况下，很少有问题的feature是separable，我们自己也很难找到separable的feature表示，所以接下来研究Non-separable case
 
 **Defining Cost Function**
 ![](/img/lhy_ml/structure-22.jpg)  
-Cost Function=∑我们得到的w认为与x最匹配的y的Φ 与 w的内积-真正最好的y的内积，C的最小值=0，之所以是只用最w认为最好的来算而不是用前三之类的，是因为我们再问题2中假设可以解出最好的，而用前三会给自己找麻烦
+Cost Function=∑我们得到的w认为与x最匹配的y的Φ 与 w的内积-真正最好的y与w的内积，C的最小值=0，之所以是只用最w认为最好的来算而不是用前三之类的，是因为我们在问题2中假设可以解出最好的，而用前三会给自己找麻烦
 
 **SGD**
 ![](/img/lhy_ml/structure-23.jpg)  
-我们用(Stochastic) Gradient Descent对C进行更新
+我们用(Stochastic) Gradient Descent对C进行更新，那么具体是如何更新的呢？
 ![](/img/lhy_ml/structure-24.jpg)  
-以w二维为例，w空间被max切割，w落在左下角,argmax[w·Φ] = y'，在某一个region里C<sup>n</sup>可以容易得到，而此时的C<sup>n</sup>容易计算微分，能计算出微分也就可以用SGD更新
+以w二维为例，w空间被max切割，w落在左下角这个region时argmax[w·Φ] = y'，在某一个region里的C<sup>n</sup>的表达式(灰色)可以容易得到，得到C的表达式就可以容易得到C<sup>n</sup>的微分(黄色)，能计算出微分也就可以用SGD更新
 ![](/img/lhy_ml/structure-25.jpg)  
-argmax:返回后面式子取最大值时的参数值
+更新过程如上，其中argmax:返回后面式子取最大值时的参数值
 
 **Another Cost Function**
 ![](/img/lhy_ml/structure-26.jpg)  
-不同错误之间也有好坏之分，右边的模型比较安全，如果train data和test data有一定差距，第一名不是正确的，右边模型可以保证分数高的和第一名差距不大
+不同错误之间也有好坏之分，右边的模型比较安全，因为如果train data和test data有一定差距，第一名不是正确的，右边模型可以保证分数高的和第一名差距不大
 
 ![](/img/lhy_ml/structure-27.jpg)  
-定义两个y之间的差距是任务相关的，要自己定义，常见的定法与右下角，其中A(y)表示y框出的面积
+定义两个y之间的差距是任务相关的，要自己定义，常见的定法如右下角，其中A(y)表示y框出的面积
 
 ![](/img/lhy_ml/structure-28.jpg)  
 ![](/img/lhy_ml/structure-29.jpg)  
-找有Δy的problem2需要自己想办法解，设计容易解的Δy
+找有Δy的problem2需要自己想办法解，需要设计容易解的Δy
 
 ![](/img/lhy_ml/structure-30.jpg)  
 ![](/img/lhy_ml/structure-31.jpg)  
@@ -105,11 +107,14 @@ argmax:返回后面式子取最大值时的参数值
 
 ## Structred SVM
 ![](/img/lhy_ml/structure-34.jpg)  
-在minimize C<sup>n</sup>的情况下第二个式子和第三个式子相等
+在minimize C<sup>n</sup>的情况下第二个式子和第三个式子相等，所以得到：  
 ![](/img/lhy_ml/structure-35.jpg)  
 ![](/img/lhy_ml/structure-36.jpg)  
+令ε=C<sup>n</sup>，每一个data/x有各自的ε  
 ![](/img/lhy_ml/structure-37.jpg)  
+ε>=0  
 ![](/img/lhy_ml/structure-38.jpg)  
+structured SVM实例  
 ![](/img/lhy_ml/structure-39.jpg)  
 可以从SVM package中找solver来解决问题，在是式子中有太多限制，我们需要进行改进
 
@@ -143,10 +148,10 @@ argmax:返回后面式子取最大值时的参数值
 在没有任何限制时，得到的w = 0
 
 ![](/img/lhy_ml/structure-49.jpg)  ![](/img/lhy_ml/structure-50.jpg)  
-对每一个data，计算它所有可能的y的violated degree，找出最大的哪一个y，把它加入到这个data对应的working set A<sup>n</sup>中，求解有新的限制之后w的值
+对每一个data，计算它所有可能的y的violated degree，找出最大的那一个y，把它的限制加入到这个data对应的working set A<sup>n</sup>中，求解有新的限制之后w的值
 
 ![](/img/lhy_ml/structure-51.jpg)  ![](/img/lhy_ml/structure-52.jpg)  
-根据新的w，求解下一个most violated的限制，把找到的most violated放到A中，得到新的限制，继续求解新的w，迭代下去(算法会收敛，并且收敛次数上限与y的数量无关)
+根据新的w，求解下一个most violated的限制，把找到的most violated的限制放到A中，得到新的working set，继续求解新的w，迭代下去(算法会收敛，并且收敛次数上限与y的数量无关)
 
 #### Multu-class SVM
 ![](/img/lhy_ml/structure-53.jpg)  
@@ -157,7 +162,7 @@ x的y是第k个class，就把x放到Φ的第k个位置，多以F(x,y)=w·Φ=w·x
 training的时候，限制的数量=N(K-1)，N=数据数量，K=类型的数量，由于限制有限方便计算，Δy可以自己定，有时我们可以认为某些种类比其他的worse，例如Δ(dog,cat)定的比较小，但是Δ(dog,bus)定的比较大
 
 ![](/img/lhy_ml/structure-54.jpg)  
-testing的时候，穷举所有y使得F(x,y)最大，由于y的数量有限，穷举较为容易
+testing的时候，穷举所有y得到使得F(x,y)最大的y，由于y的数量有限，穷举较为容易
 
 #### Binary SVM
 ![](/img/lhy_ml/structure-57.jpg)  
