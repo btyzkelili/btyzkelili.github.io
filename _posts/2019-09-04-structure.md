@@ -114,3 +114,56 @@ argmax:返回后面式子取最大值时的参数值
 可以从SVM package中找solver来解决问题，在是式子中有太多限制，我们需要进行改进
 
 **Cutting Plane Algorithm**
+![](/img/lhy_ml/structure-40.jpg)  
+我们以一维的w和ε为例，在没有限制的情况下，C的图像如图，一个限制就是下面一个线条，要求w和ε在线条的某一侧有效，很多线条围出来一块区域，在这个区域求C的最小值
+
+算法过程如下：  
+![](/img/lhy_ml/structure-41.jpg)  
+![](/img/lhy_ml/structure-47.jpg)  
+
+以下是该算法的一个实例：  
+![](/img/lhy_ml/structure-42.jpg)  
+在没有限制/working set = null的情况下，QP问题，容易解出使得C最小的w,ε点在右下角(颜色越浅表示C值越小)
+
+![](/img/lhy_ml/structure-43.jpg)  
+然后从所有的限制中，找一个最难满足的/most violated限制，把这个限制加到sorking set中
+
+如何找most violated的限制呢？
+![](/img/lhy_ml/structure-46.jpg)  
+定义一个衡量violation的标准，其中蓝色箭头是因为ε'、w'、y hat(y hat是最匹配的那一个)是固定的，不会造成影响
+
+![](/img/lhy_ml/structure-44.jpg)  
+在该working set/限制下，找C的最小解
+
+![](/img/lhy_ml/structure-45.jpg)  
+同理，继续找没有满足的最难的限制，加到working set里，再求C的最小值，迭代到不再变化
+
+另一个实例：
+![](/img/lhy_ml/structure-48.jpg)  
+在没有任何限制时，得到的w = 0
+
+![](/img/lhy_ml/structure-49.jpg)  ![](/img/lhy_ml/structure-50.jpg)  
+对每一个data，计算它所有可能的y的violated degree，找出最大的哪一个y，把它加入到这个data对应的working set A<sup>n</sup>中，求解有新的限制之后w的值
+
+![](/img/lhy_ml/structure-51.jpg)  ![](/img/lhy_ml/structure-52.jpg)  
+根据新的w，求解下一个most violated的限制，把找到的most violated放到A中，得到新的限制，继续求解新的w，迭代下去(算法会收敛，并且收敛次数上限与y的数量无关)
+
+#### Multu-class SVM
+![](/img/lhy_ml/structure-53.jpg)  
+x的y是第k个class，就把x放到Φ的第k个位置，多以F(x,y)=w·Φ=w·x
+
+![](/img/lhy_ml/structure-56.jpg)  
+![](/img/lhy_ml/structure-55.jpg)  
+training的时候，限制的数量=N(K-1)，N=数据数量，K=类型的数量，由于限制有限方便计算，Δy可以自己定，有时我们可以认为某些种类比其他的worse，例如Δ(dog,cat)定的比较小，但是Δ(dog,bus)定的比较大
+
+![](/img/lhy_ml/structure-54.jpg)  
+testing的时候，穷举所有y使得F(x,y)最大，由于y的数量有限，穷举较为容易
+
+#### Binary SVM
+![](/img/lhy_ml/structure-57.jpg)  
+K=2，假设如果弄错Δy=1，错误的情况/限制只有两种(y=1时一种，y=2时一种)，将这两种化简可以发现与原来的SVM一样
+
+#### Beyond Structured SVM
+![](/img/lhy_ml/structure-58.jpg)  
+![](/img/lhy_ml/structure-59.jpg)  
+由于stucture SVM是线性的，很难做复杂的事情，要做的好要求feature一定要定的很好，自己很难做到，所以用DNN得到feature
