@@ -23,7 +23,7 @@ Sequence Label是从sequence到sequence的任务，并且输入输出长度相�
 #### HMM
 ![](/img/lhy_ml/seq-4.jpg)  
 整体思路：我们说出一句话，首先要想好这句话每个词的词性组合，然后给对应的词性填上具体单词，以下是一个具体的计算例子：  
-![](/img/lhy_ml/seq-5.jpg)  ![](/img/lhy_ml/seq-6.jpg)  ![](/img/lhy_ml/seq-6.jpg)  
+![](/img/lhy_ml/seq-5.jpg)  ![](/img/lhy_ml/seq-6.jpg)  ![](/img/lhy_ml/seq-7.jpg)  
 一般化过程：  
 ![](/img/lhy_ml/seq-8.jpg)  
 ![](/img/lhy_ml/seq-9.jpg)  ![](/img/lhy_ml/seq-10.jpg)  
@@ -39,7 +39,7 @@ Sequence Label是从sequence到sequence的任务，并且输入输出长度相�
 ![](/img/lhy_ml/seq-13.jpg)  
 HMM是structure learning的一种方法，所以要回答structure learning的三个问题
 ![](/img/lhy_ml/seq-14.jpg)  
-HMM会脑补数据，有可能出现认为没有出现的数据的概率比出现的数据概率高，这是因为它的transition probability和emission probability
+HMM会脑补数据，有可能出现认为没有出现的数据与x匹配的概率比出现的数据高，这是因为它的transition probability和emission probability
 是分开model的，他假设这两个几率是independent，这件事有好有坏，在训练数据很少的时候，HMM表现更好，可以用更复杂的模型解决这个问题(CRF)
 
 #### CRF
@@ -75,13 +75,13 @@ CRF是structure learning的一种方法，所以要回答structure learning的�
 #### Structured Perceptron
 ![](/img/lhy_ml/seq-27.jpg)  
 ![](/img/lhy_ml/seq-28.jpg)  
-Structure只减去最大概率的Φ-->heard，而CRF会减去所有Φ的weighted sum-->soft，但是CRF要求∑有事会比较困难，如果难以解，建议用
+Structure只减去最大概率的Φ-->hard，而CRF会减去所有Φ的weighted sum-->soft，但是CRF要求计算∑，有时会比较困难，如果难以求解，建议用
 Structure Perceptron
 
 #### Structure SVM
 ![](/img/lhy_ml/seq-29.jpg)  
 ![](/img/lhy_ml/seq-30.jpg)  
-重要的是设计error function Δy，能够计算出在有Δy的情况下得到与x最匹配的y
+重要的是设计error function Δy，使能够计算出在有Δy的情况下得到与x最匹配的y
 
 ![](/img/lhy_ml/seq-31.jpg)  
 
@@ -90,7 +90,9 @@ Structure Perceptron
 1. 单向RNN在输出一个结果时只看了这个位置之前的内容，不会看完所有sequence，双向RNN不知道会有怎样的优劣  
 2. HMM等可以明确考虑output的label与label之间的关系，在穷举所有sequence的时候，只穷举符合规定条件的sequence，
 类似中文是一个声母后面加一个韵母，RNN需要自己学习到这些条件  
-3. RNN的cost和error不一定有关联，RNN可以deep，因为deep太强了所以还是RNN胜利
+3. RNN的cost和error不一定有关联
+4. RNN可以deep  
+因为deep太强了所以还是RNN胜利
 
 **Integrated together**
 ![](/img/lhy_ml/seq-33.jpg)  
