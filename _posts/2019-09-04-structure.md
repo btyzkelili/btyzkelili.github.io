@@ -172,3 +172,9 @@ K=2，假设如果弄错Δy=1，错误的情况/限制只有两种(y=1时一种�
 ![](/img/lhy_ml/structure-58.jpg)  
 ![](/img/lhy_ml/structure-59.jpg)  
 由于stucture SVM是线性的，很难做复杂的事情，要做的好要求feature一定要定的很好，自己很难做到，所以用DNN得到feature
+
+## GAN and Structure Learning
+![](/img/lhy_ml/structure-60.jpg)  
+![](/img/lhy_ml/structure-61.jpg)  
+![](/img/lhy_ml/structure-62.jpg)  
+GAN是train Structure Learning的一种方法
